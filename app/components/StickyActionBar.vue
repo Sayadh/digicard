@@ -1,0 +1,40 @@
+<template>
+  <div
+    class="fixed left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-[380px] z-50 md:hidden"
+    style="bottom: calc(1.25rem + env(safe-area-inset-bottom));"
+    v-reveal="300"
+  >
+    <div class="flex items-center gap-1.5 p-1.5 bg-ink/90 backdrop-blur-xl rounded-full border border-hairline-dark shadow-lift-lg">
+      <a
+        href="tel:+1234567890"
+        :aria-label="t.dock.call"
+        class="w-11 h-11 flex items-center justify-center rounded-full text-bone/80 hover:bg-bone/10 hover:text-brass-light transition-all duration-300 active:scale-90"
+      >
+        <PhoneIcon class="w-4 h-4" />
+      </a>
+      <a
+        href="https://wa.me/1234567890"
+        target="_blank"
+        rel="noopener"
+        :aria-label="t.dock.whatsapp"
+        class="w-11 h-11 flex items-center justify-center rounded-full text-bone/80 hover:bg-bone/10 hover:text-brass-light transition-all duration-300 active:scale-90"
+      >
+        <MessageCircleIcon class="w-4 h-4" />
+      </a>
+      <a
+        href="#gift-card"
+        :aria-label="t.dock.gift"
+        class="flex items-center justify-center gap-2 bg-brass text-ink rounded-full font-medium text-2xs uppercase tracking-widest shadow-brass hover:bg-brass-light transition-all duration-300 active:scale-[0.97] w-11 h-11 min-[600px]:w-auto min-[600px]:h-auto min-[600px]:flex-1 min-[600px]:py-3 min-[600px]:px-4 animate-pulseglow min-[600px]:animate-none"
+      >
+        <GiftIcon class="w-4 h-4 min-[600px]:w-3.5 min-[600px]:h-3.5 shrink-0" />
+        <span class="hidden min-[600px]:inline">{{ t.dock.gift }}</span>
+      </a>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { PhoneIcon, MessageCircleIcon, GiftIcon } from 'lucide-vue-next'
+
+const { t } = useLocale()
+</script>
