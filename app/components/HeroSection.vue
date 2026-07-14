@@ -1,33 +1,34 @@
 <template>
   <section class="relative bg-ink text-bone overflow-hidden grain">
-    <!-- Depth: a slow brass glow anchored top-right, never centered, never symmetrical -->
-    <div class="absolute -top-32 -right-24 w-80 h-80 rounded-full bg-brass/10 blur-[90px] pointer-events-none" />
+    <!-- Depth: a slow mint glow anchored top-right, never centered, never symmetrical -->
+    <div class="absolute -top-32 -right-24 w-80 h-80 rounded-full bg-mint/10 blur-[90px] pointer-events-none" />
     <div class="absolute top-1/3 -left-28 w-64 h-64 rounded-full bg-moss/20 blur-[100px] pointer-events-none" />
 
     <!-- Single continuous current line, the brand's signature gesture, drawn once across the hero -->
     <svg class="absolute inset-0 w-full h-full opacity-[0.07] pointer-events-none" viewBox="0 0 400 600" preserveAspectRatio="none" fill="none">
-      <path d="M-20 120 C 80 60, 160 200, 260 130 S 460 40, 520 160" stroke="#E4C88C" stroke-width="1" />
-      <path d="M-30 320 C 60 260, 180 420, 280 340 S 470 260, 540 380" stroke="#F6F1E7" stroke-width="1" />
+      <path d="M-20 120 C 80 60, 160 200, 260 130 S 460 40, 520 160" stroke="#8FF3D9" stroke-width="1" />
+      <path d="M-30 320 C 60 260, 180 420, 280 340 S 470 260, 540 380" stroke="#F7F8F5" stroke-width="1" />
     </svg>
 
     <div class="relative z-10 max-w-[clamp(20rem,75vw,42rem)] mx-auto px-7 pt-[clamp(2.5rem,6vw,5rem)] pb-24 flex flex-col items-center text-center">
-      <div class="mb-8 md:mb-10" v-reveal>
+      <div class="mb-10 md:mb-12" v-reveal>
         <LanguageSwitch />
       </div>
 
-      <!-- Identity lockup — mark and wordmark share one line, like an actual letterhead -->
-      <div class="flex items-center gap-2.5 mb-10 md:mb-12" v-reveal="40">
-        <LogoMark class="w-6 h-6 md:w-7 md:h-7 text-brass-light" />
-        <span class="text-2xs font-mono uppercase tracking-widest2 text-bone/50">{{ t.hero.eyebrow }}</span>
+      <!-- The logo carries the brand identity now — no separate "Digital Card"
+           label needed above it; falls back to the styled wordmark until
+           /public/logo.JPG exists. Kept out of the h1 so the mark can be sized
+           on its own terms; a sr-only h1 preserves the page heading either way. -->
+      <div class="mb-3" v-reveal="40">
+        <div v-if="logoAvailable" class="inline-flex items-center justify-center bg-bone rounded-2xl p-0 shadow-lift-lg">
+          <img :src="logoPath" alt="Full House Cleaning" class="h-[clamp(6.5rem,10vw_+_3.5rem,10.5rem)] w-auto rounded-2xl" />
+        </div>
+        <h1 v-if="logoAvailable" class="sr-only">Full House Cleaning</h1>
+        <h1 v-else class="font-display text-[clamp(2.75rem,4vw_+_1.75rem,4rem)] leading-[0.98] tracking-tight text-bone block">
+          {{ t.hero.title1 }}
+          <span class="block italic font-normal text-mint-light">{{ t.hero.title2 }}</span>
+        </h1>
       </div>
-
-      <h1
-        class="font-display text-[clamp(2.75rem,4vw_+_1.75rem,4rem)] leading-[0.98] tracking-tight text-bone mb-3"
-        v-reveal="80"
-      >
-        {{ t.hero.title1 }}
-        <span class="block italic font-normal text-brass-light">{{ t.hero.title2 }}</span>
-      </h1>
 
       <p class="text-[clamp(0.875rem,0.6vw_+_0.75rem,1rem)] text-bone/55 font-light leading-relaxed max-w-[clamp(19rem,45vw,28rem)] mb-14" v-reveal="160">
         {{ t.hero.tagline }}
@@ -36,15 +37,15 @@
       <!-- Actions: one confident move, one quiet one — given room to breathe -->
       <div class="flex flex-col sm:flex-row gap-4 w-full max-w-[18rem] sm:max-w-md" v-reveal="240">
         <a
-          href="/full-house-cleaning.vcf"
-          class="flex-1 inline-flex items-center justify-center gap-2.5 bg-brass text-ink py-4 rounded-full font-medium text-xs uppercase tracking-widest shadow-brass hover:bg-brass-light transition-all duration-300 active:scale-[0.97]"
+          href="#contact"
+          class="flex-1 inline-flex items-center justify-center gap-2.5 bg-mint text-ink py-4 rounded-full font-medium text-xs uppercase tracking-widest shadow-mint hover:bg-mint-light transition-all duration-300 active:scale-[0.97]"
         >
-          <DownloadIcon class="w-3.5 h-3.5" />
-          {{ t.hero.saveContact }}
+          <ContactIcon class="w-3.5 h-3.5" />
+          {{ t.hero.seeContacts }}
         </a>
         <button
           type="button"
-          class="flex-1 inline-flex items-center justify-center gap-2.5 bg-transparent border border-hairline-dark text-bone/70 py-4 rounded-full font-medium text-xs uppercase tracking-widest hover:border-brass-light/40 hover:text-brass-light transition-all duration-300 active:scale-[0.97]"
+          class="flex-1 inline-flex items-center justify-center gap-2.5 bg-transparent border border-hairline-dark text-bone/70 py-4 rounded-full font-medium text-xs uppercase tracking-widest hover:border-mint-light/40 hover:text-mint-light transition-all duration-300 active:scale-[0.97]"
           @click="share"
         >
           <Share2Icon class="w-3.5 h-3.5" />
@@ -67,11 +68,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-import { DownloadIcon, Share2Icon } from 'lucide-vue-next'
+import { ref, watch, onMounted } from 'vue'
+import { ContactIcon, Share2Icon } from 'lucide-vue-next'
 
 const { t } = useLocale()
 const shareLabel = ref(t.value.hero.share)
+
+const { available: logoAvailable, check: checkLogo, path: logoPath } = useBrandLogo()
+onMounted(checkLogo)
 
 watch(() => t.value.hero.share, (val) => {
   shareLabel.value = val

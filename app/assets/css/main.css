@@ -9,7 +9,7 @@
   }
 
   body {
-    @apply bg-bone text-ink font-sans antialiased selection:bg-brass-light selection:text-ink;
+    @apply bg-bone text-ink font-sans antialiased selection:bg-mint-light selection:text-ink;
   }
 
   ::-webkit-scrollbar {

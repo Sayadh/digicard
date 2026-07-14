@@ -1,7 +1,7 @@
 <template>
   <section id="contact" class="relative py-12 md:py-20 px-6 max-w-[clamp(20rem,80vw,48rem)] mx-auto">
     <div class="text-center mb-10 md:mb-14" v-reveal>
-      <span class="text-2xs font-mono uppercase tracking-widest2 text-brass-dim block mb-3">
+      <span class="text-2xs font-mono uppercase tracking-widest2 text-mint-dim block mb-3">
         {{ t.contact.eyebrow }}
       </span>
       <h2 class="font-display text-[clamp(1.85rem,2vw_+_1.4rem,2.35rem)] leading-tight text-ink">
@@ -21,7 +21,7 @@
           :rel="action.external ? 'noopener' : undefined"
           class="flex flex-col items-center justify-center gap-3 py-7 md:py-9 hover:bg-moss/[0.04] transition-colors group"
         >
-          <span class="w-11 h-11 rounded-full border border-hairline flex items-center justify-center text-ink group-hover:bg-ink group-hover:text-brass-light group-hover:border-ink group-hover:-translate-y-0.5 transition-all duration-300">
+          <span class="w-11 h-11 rounded-full border border-hairline flex items-center justify-center text-ink group-hover:bg-ink group-hover:text-mint-light group-hover:border-ink group-hover:-translate-y-0.5 transition-all duration-300">
             <component :is="action.icon" class="w-4 h-4" />
           </span>
           <span class="text-2xs font-mono uppercase tracking-wider text-stone">{{ action.label }}</span>
@@ -73,7 +73,7 @@
           :key="social.label"
           :href="social.href"
           :aria-label="social.label"
-          class="w-10 h-10 rounded-full border border-hairline flex items-center justify-center text-ink shadow-lift-sm hover:bg-ink hover:text-brass-light hover:border-ink hover:-translate-y-0.5 transition-all duration-300"
+          class="w-10 h-10 rounded-full border border-hairline flex items-center justify-center text-ink shadow-lift-sm hover:bg-ink hover:text-mint-light hover:border-ink hover:-translate-y-0.5 transition-all duration-300"
         >
           <component :is="social.icon" class="w-4 h-4" />
         </a>

@@ -5,7 +5,7 @@
       :key="code"
       type="button"
       class="transition-colors duration-300"
-      :class="locale === code ? 'text-brass-light' : 'text-bone/35 hover:text-bone/60'"
+      :class="locale === code ? 'text-mint-light' : 'text-bone/35 hover:text-bone/60'"
       :aria-pressed="locale === code"
       @click="setLocale(code)"
     >

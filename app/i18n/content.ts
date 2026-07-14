@@ -9,11 +9,10 @@ export interface ServiceItem {
 
 export interface LocaleContent {
   hero: {
-    eyebrow: string
     title1: string
     title2: string
     tagline: string
-    saveContact: string
+    seeContacts: string
     share: string
     shareCopied: string
     scroll: string
@@ -58,6 +57,14 @@ export interface LocaleContent {
     paragraph: string
     tags: [string, string, string]
   }
+  gallery: {
+    eyebrow: string
+    title: string
+    photoLabel: string
+    videoLabel: string
+    comingSoon: string
+    close: string
+  }
   footer: {
     privacy: string
     terms: string
@@ -90,11 +97,10 @@ export interface LocaleContent {
 export const content: Record<Locale, LocaleContent> = {
   hy: {
     hero: {
-      eyebrow: 'Թվային քարտ',
       title1: 'Full House',
       title2: 'Cleaning',
       tagline: 'Բուտիկ մաքրման տուն՝ տների համար, որոնք արժանի են հանգիստ ու ուշադիր խնամքի։',
-      saveContact: 'Պահպանել կոնտակտը',
+      seeContacts: 'Կոնտակտներ',
       share: 'Կիսվել',
       shareCopied: 'Պատճենվեց',
       scroll: 'Ոլորել'
@@ -145,6 +151,14 @@ export const content: Record<Locale, LocaleContent> = {
       paragraph: 'Full House Cleaning-ը փոքր թիմ է, որը կարևորում է մանրամասները․ այնպիսի խնամք, որը տունը վերածում է իրական հանգստի վայրի։',
       tags: ['Հիմն. 2020', 'Մանրամասների վրա կենտրոնացած', 'Վստահելի']
     },
+    gallery: {
+      eyebrow: 'Տեսանելի արդյունք',
+      title: 'Մեր աշխատանքը',
+      photoLabel: 'Լուսանկար',
+      videoLabel: 'Տեսանյութ',
+      comingSoon: 'Տեսանյութը շուտով կհասանելի կլինի',
+      close: 'Փակել'
+    },
     footer: {
       privacy: 'Գաղտնիություն',
       terms: 'Պայմաններ'
@@ -175,11 +189,10 @@ export const content: Record<Locale, LocaleContent> = {
   },
   en: {
     hero: {
-      eyebrow: 'Digital Card',
       title1: 'Full House',
       title2: 'Cleaning',
       tagline: 'A boutique cleaning house — for homes that deserve quiet, considered care.',
-      saveContact: 'Save Contact',
+      seeContacts: 'See Contacts',
       share: 'Share',
       shareCopied: 'Copied',
       scroll: 'Scroll'
@@ -230,6 +243,14 @@ export const content: Record<Locale, LocaleContent> = {
       paragraph: 'Full House Cleaning is a small team of people who care about the details — the kind of care that turns a house into somewhere you can actually rest.',
       tags: ['Est. 2020', 'Detail-focused', 'Trusted']
     },
+    gallery: {
+      eyebrow: 'Visible Results',
+      title: 'Our Work',
+      photoLabel: 'Photo',
+      videoLabel: 'Video',
+      comingSoon: 'Video will be available soon',
+      close: 'Close'
+    },
     footer: {
       privacy: 'Privacy',
       terms: 'Terms'
@@ -260,11 +281,10 @@ export const content: Record<Locale, LocaleContent> = {
   },
   ru: {
     hero: {
-      eyebrow: 'Цифровая карта',
       title1: 'Full House',
       title2: 'Cleaning',
       tagline: 'Бутик-клининг для домов, которые заслуживают тихой, вдумчивой заботы.',
-      saveContact: 'Сохранить контакт',
+      seeContacts: 'Контакты',
       share: 'Поделиться',
       shareCopied: 'Скопировано',
       scroll: 'Прокрутить'
@@ -314,6 +334,14 @@ export const content: Record<Locale, LocaleContent> = {
       quote: 'Мы верим, что чистое пространство возвращает вам время.',
       paragraph: 'Full House Cleaning — небольшая команда людей, для которых важны детали: забота, благодаря которой дом становится местом, где можно по-настоящему отдохнуть.',
       tags: ['Осн. в 2020', 'Внимание к деталям', 'Надёжность']
+    },
+    gallery: {
+      eyebrow: 'Наглядный результат',
+      title: 'Наши работы',
+      photoLabel: 'Фото',
+      videoLabel: 'Видео',
+      comingSoon: 'Видео появится скоро',
+      close: 'Закрыть'
     },
     footer: {
       privacy: 'Конфиденциальность',

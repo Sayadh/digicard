@@ -12,24 +12,24 @@ export default <Partial<Config>>{
   theme: {
     extend: {
       colors: {
-        // Ink — deep pine-black, the brand's gravity
-        ink: '#0E1B17',
-        'ink-soft': '#16261F',
-        // Bone — warm paper, the brand's air
-        bone: '#F6F1E7',
-        paper: '#FCFAF4',
-        // Brass — the single luxury accent, used sparingly
-        brass: '#B68A4E',
-        'brass-light': '#E4C88C',
-        'brass-dim': '#8C6B3C',
+        // Ink — the brand's real dark teal, the gravity of the mark
+        ink: '#183332',
+        'ink-soft': '#233938',
+        // Bone — the brand's real near-white, the air
+        bone: '#F7F8F5',
+        paper: '#FCFDFC',
+        // Mint — the brand's real accent, straight from the logo's wave
+        mint: '#61EDCA',
+        'mint-light': '#8FF3D9',
+        'mint-dim': '#2F6F5C',
         // Moss — quiet secondary green, freshness without shouting
         moss: '#4B6357',
         'moss-deep': '#324840',
         // Stone — text and hairlines
         stone: '#6E7570',
         'stone-light': '#9CA39D',
-        hairline: 'rgba(14, 27, 23, 0.10)',
-        'hairline-dark': 'rgba(246, 241, 231, 0.12)'
+        hairline: 'rgba(35, 57, 56, 0.12)',
+        'hairline-dark': 'rgba(247, 248, 245, 0.12)'
       },
       fontFamily: {
         // Armenian fallbacks matter here: Fraunces/Inter/IBM Plex Mono have no Armenian
@@ -42,11 +42,11 @@ export default <Partial<Config>>{
         '2xs': ['0.6875rem', { lineHeight: '1rem', letterSpacing: '0.02em' }]
       },
       boxShadow: {
-        'lift-sm': '0 2px 10px rgba(14, 27, 23, 0.05)',
-        lift: '0 12px 40px rgba(14, 27, 23, 0.08)',
-        'lift-lg': '0 30px 70px rgba(14, 27, 23, 0.16)',
-        card: '0 40px 80px -20px rgba(14, 27, 23, 0.45)',
-        brass: '0 10px 30px rgba(182, 138, 78, 0.25)'
+        'lift-sm': '0 2px 10px rgba(24, 51, 50, 0.05)',
+        lift: '0 12px 40px rgba(24, 51, 50, 0.08)',
+        'lift-lg': '0 30px 70px rgba(24, 51, 50, 0.16)',
+        card: '0 40px 80px -20px rgba(24, 51, 50, 0.45)',
+        mint: '0 10px 30px rgba(97, 237, 202, 0.3)'
       },
       borderRadius: {
         xl2: '1.75rem'
@@ -72,8 +72,8 @@ export default <Partial<Config>>{
           to: { transform: 'translateX(150%) rotate(8deg)' }
         },
         pulseglow: {
-          '0%, 100%': { boxShadow: '0 0 0 0 rgba(182, 138, 78, 0.45)' },
-          '50%': { boxShadow: '0 0 0 8px rgba(182, 138, 78, 0)' }
+          '0%, 100%': { boxShadow: '0 0 0 0 rgba(97, 237, 202, 0.5)' },
+          '50%': { boxShadow: '0 0 0 8px rgba(97, 237, 202, 0)' }
         }
       },
       animation: {

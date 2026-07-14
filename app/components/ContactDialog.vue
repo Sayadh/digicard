@@ -40,7 +40,7 @@
 
           <!-- Form state -->
           <form v-else class="text-left" @submit.prevent="submit">
-            <span class="text-2xs font-mono uppercase tracking-widest2 text-brass-dim block mb-2">
+            <span class="text-2xs font-mono uppercase tracking-widest2 text-mint-dim block mb-2">
               {{ t.dialog.giftEyebrow }}
             </span>
             <h3 id="dialog-title" class="font-display text-xl text-ink mb-6">

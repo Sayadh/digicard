@@ -15,7 +15,7 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
-        { name: 'theme-color', content: '#0E1B17' },
+        { name: 'theme-color', content: '#183332' },
         {
           name: 'description',
           content: 'Բուտիկ մաքրման տուն՝ գրպանում։ Պատվիրեք ծառայություն, ուղարկեք նվեր, ասեք բարև — Full House Cleaning-ի թվային քարտը։'

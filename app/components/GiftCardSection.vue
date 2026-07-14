@@ -1,7 +1,7 @@
 <template>
   <section id="gift-card" class="relative py-12 md:py-20 px-6 max-w-[clamp(20rem,85vw,56rem)] mx-auto">
     <div class="text-center md:text-left mb-10 md:mb-0 md:hidden" v-reveal>
-      <span class="text-2xs font-mono uppercase tracking-widest2 text-brass-dim block mb-3">
+      <span class="text-2xs font-mono uppercase tracking-widest2 text-mint-dim block mb-3">
         {{ t.giftCard.eyebrow }}
       </span>
       <h2 class="font-display text-[clamp(1.65rem,5vw,1.95rem)] leading-tight text-ink">
@@ -16,7 +16,7 @@
 
       <div
         ref="el"
-        class="group relative aspect-[1.586/1] rounded-[22px] bg-gradient-to-br from-ink-soft via-ink to-[#0A1512] text-bone shadow-card border border-hairline-dark overflow-hidden select-none"
+        class="group relative aspect-[1.586/1] rounded-[22px] bg-gradient-to-br from-ink-soft via-ink to-[#0F211F] text-bone shadow-card border border-hairline-dark overflow-hidden select-none"
         :style="style"
         @pointermove="onMove"
         @pointerleave="onLeave"
@@ -26,7 +26,7 @@
 
         <!-- Fine current line engraved across the card -->
         <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 300 190" preserveAspectRatio="none" fill="none">
-          <path d="M-10 130 C 60 90, 110 160, 170 120 S 280 80, 320 130" stroke="#E4C88C" stroke-width="1" />
+          <path d="M-10 130 C 60 90, 110 160, 170 120 S 280 80, 320 130" stroke="#8FF3D9" stroke-width="1" />
         </svg>
 
         <!-- Holographic sheen — sweeps once on hover / focus, never loops -->
@@ -37,7 +37,7 @@
         <div class="relative z-10 h-full flex flex-col justify-between p-6">
           <div class="flex items-start justify-between">
             <div>
-              <div class="text-2xs font-mono uppercase tracking-widest2 text-brass-light">
+              <div class="text-2xs font-mono uppercase tracking-widest2 text-mint-light">
                 {{ t.giftCard.cardBrand }}
               </div>
               <div class="text-[9px] text-bone/40 uppercase tracking-wider mt-1">
@@ -45,7 +45,7 @@
               </div>
             </div>
             <!-- Chip -->
-            <div class="w-9 h-[26px] rounded-[5px] bg-gradient-to-br from-brass-light via-brass to-brass-dim opacity-90 relative overflow-hidden">
+            <div class="w-9 h-[26px] rounded-[5px] bg-gradient-to-br from-mint-light via-mint to-mint-dim opacity-90 relative overflow-hidden">
               <div class="absolute inset-0.5 grid grid-cols-3 grid-rows-2 gap-px opacity-40">
                 <div v-for="n in 6" :key="n" class="border border-ink/30" />
               </div>
@@ -57,7 +57,7 @@
               <div class="text-[9px] text-bone/40 uppercase tracking-wider mb-1">{{ t.giftCard.cardNoLabel }}</div>
               <div class="text-sm font-mono tracking-[0.2em] text-bone/90">FHC&nbsp;9088&nbsp;VIP</div>
             </div>
-            <svg class="w-7 h-7 text-brass-light/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+            <svg class="w-7 h-7 text-mint-light/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
               <path d="M3 3H9V9H3V3ZM3 15H9V21H3V15ZM15 3H21V9H15V3ZM18 18H18.01M15 15H15.01M21 15H21.01M15 21H15.01M21 21H21.01" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </div>
@@ -67,7 +67,7 @@
 
     <div class="md:order-1 md:text-left">
       <div class="hidden md:block mb-8" v-reveal>
-        <span class="text-2xs font-mono uppercase tracking-widest2 text-brass-dim block mb-3">
+        <span class="text-2xs font-mono uppercase tracking-widest2 text-mint-dim block mb-3">
           {{ t.giftCard.eyebrow }}
         </span>
         <h2 class="font-display text-[clamp(2.2rem,2.5vw_+_1.6rem,2.9rem)] leading-tight text-ink">

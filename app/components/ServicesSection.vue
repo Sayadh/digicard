@@ -1,7 +1,7 @@
 <template>
   <section class="relative py-12 md:py-20 px-6 max-w-[clamp(20rem,85vw,56rem)] mx-auto">
     <div class="text-center mb-10 md:mb-14" v-reveal>
-      <span class="text-2xs font-mono uppercase tracking-widest2 text-brass-dim block mb-3">
+      <span class="text-2xs font-mono uppercase tracking-widest2 text-mint-dim block mb-3">
         {{ t.services.eyebrow }}
       </span>
       <h2 class="font-display text-[clamp(1.85rem,2vw_+_1.4rem,2.35rem)] leading-tight text-ink">
@@ -19,13 +19,13 @@
         v-reveal="i * 60"
         @click="contactDialog.open({ type: 'service', name: service.title })"
       >
-        <span class="font-mono text-2xs text-brass-dim pt-1 tabular-nums shrink-0">
+        <span class="font-mono text-2xs text-mint-dim pt-1 tabular-nums shrink-0">
           {{ String(i + 1).padStart(2, '0') }}
         </span>
 
         <span
           v-if="service.popular"
-          class="w-1.5 h-1.5 rounded-full bg-brass mt-2.5 shrink-0"
+          class="w-1.5 h-1.5 rounded-full bg-mint mt-2.5 shrink-0"
           :aria-label="t.services.popularLabel"
         />
 
