@@ -7,6 +7,7 @@
       <ServicesSection />
       <AboutSection />
       <GalleryShowcaseSection />
+      <QrCodeSection />
       <FooterSection />
 
       <StickyActionBar />

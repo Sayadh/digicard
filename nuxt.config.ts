@@ -8,6 +8,16 @@ export default defineNuxtConfig({
     '@nuxt/image'
   ],
 
+  // Public production URL used to build each card's shareable/QR link
+  // (e.g. `${siteUrl}/${card.slug}`). Overridable per-environment via
+  // the NUXT_PUBLIC_SITE_URL env var (e.g. on Vercel preview deployments)
+  // without needing a code change.
+  runtimeConfig: {
+    public: {
+      siteUrl: 'https://digicard.am'
+    }
+  },
+
   app: {
     head: {
       htmlAttrs: { lang: 'hy' },
