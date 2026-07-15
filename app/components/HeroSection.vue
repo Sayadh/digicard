@@ -6,7 +6,7 @@
 
     <!-- Single continuous current line, the brand's signature gesture, drawn once across the hero -->
     <svg class="absolute inset-0 w-full h-full opacity-[0.07] pointer-events-none" viewBox="0 0 400 600" preserveAspectRatio="none" fill="none">
-      <path d="M-20 120 C 80 60, 160 200, 260 130 S 460 40, 520 160" stroke="#8FF3D9" stroke-width="1" />
+      <path d="M-20 120 C 80 60, 160 200, 260 130 S 460 40, 520 160" stroke="#5DD9E8" stroke-width="1" />
       <path d="M-30 320 C 60 260, 180 420, 280 340 S 470 260, 540 380" stroke="#F7F8F5" stroke-width="1" />
     </svg>
 

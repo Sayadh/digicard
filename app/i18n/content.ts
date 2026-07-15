@@ -107,8 +107,8 @@ export const content: Record<Locale, LocaleContent> = {
     },
     giftCard: {
       eyebrow: 'Full House-ի սիրտը',
-      titleLine1: 'Նվիրեք հանգիստ',
-      titleLine2: 'տան զգացողությունը',
+      titleLine1: 'Նվիրիր ժամանակ',
+      titleLine2: 'քո սիրելի մարդկանց',
       cardBrand: 'Full House Cleaning',
       cardSub: 'Անդամության քարտ',
       cardNoLabel: 'Քարտի Հ/Հ',
@@ -199,8 +199,8 @@ export const content: Record<Locale, LocaleContent> = {
     },
     giftCard: {
       eyebrow: 'The Heart of Full House',
-      titleLine1: 'Give the gift of',
-      titleLine2: 'a calmer home.',
+      titleLine1: 'Give time to',
+      titleLine2: 'your loved ones.',
       cardBrand: 'Full House Cleaning',
       cardSub: 'Membership Card',
       cardNoLabel: 'Card No.',
@@ -291,8 +291,8 @@ export const content: Record<Locale, LocaleContent> = {
     },
     giftCard: {
       eyebrow: 'Сердце Full House',
-      titleLine1: 'Подарите',
-      titleLine2: 'спокойный дом.',
+      titleLine1: 'Дарите время',
+      titleLine2: 'близким людям.',
       cardBrand: 'Full House Cleaning',
       cardSub: 'Карта участника',
       cardNoLabel: 'Номер карты',

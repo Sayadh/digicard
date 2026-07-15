@@ -11,19 +11,19 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'hy' },
-      title: 'Full House Cleaning — Թվային քարտ',
+      title: 'DigiCard — Թվային այցեքարտի պլատֆորմ',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
-        { name: 'theme-color', content: '#183332' },
+        { name: 'theme-color', content: '#07070C' },
         {
           name: 'description',
-          content: 'Բուտիկ մաքրման տուն՝ գրպանում։ Պատվիրեք ծառայություն, ուղարկեք նվեր, ասեք բարև — Full House Cleaning-ի թվային քարտը։'
+          content: 'Ստեղծիր գեղեցիկ թվային այցեքարտ րոպեների ընթացքում և կիսվիր QR կոդով, NFC քարտով կամ ուղիղ հղումով։'
         },
-        { property: 'og:title', content: 'Full House Cleaning — Թվային քարտ' },
+        { property: 'og:title', content: 'DigiCard — Digital Business Card Platform' },
         {
           property: 'og:description',
-          content: 'Բուտիկ մաքրման տուն՝ գրպանում։ Պատվիրեք ծառայություն, ուղարկեք նվեր, ասեք բարև։'
+          content: 'One digital business card. Unlimited possibilities. Share via QR, NFC, or a direct link.'
         },
         { property: 'og:type', content: 'website' },
         { name: 'twitter:card', content: 'summary' }
@@ -35,26 +35,6 @@ export default defineNuxtConfig({
         {
           rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+Armenian:wght@400;500;600&family=Noto+Sans+Armenian:wght@300;400;500;600;700&display=swap'
-        }
-      ],
-      script: [
-        {
-          type: 'application/ld+json',
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'HomeAndConstructionBusiness',
-            name: 'Full House Cleaning',
-            description: 'Boutique residential and commercial cleaning services.',
-            telephone: '+1-234-567-890',
-            email: 'hello@fullhousecleaning.com',
-            url: 'https://fullhousecleaning.com',
-            address: {
-              '@type': 'PostalAddress',
-              streetAddress: '123 Cleaning Ave',
-              addressLocality: 'City'
-            },
-            openingHours: 'Mo-Sa 08:00-18:00'
-          })
         }
       ]
     }

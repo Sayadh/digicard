@@ -26,7 +26,7 @@
 
         <!-- Fine current line engraved across the card -->
         <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 300 190" preserveAspectRatio="none" fill="none">
-          <path d="M-10 130 C 60 90, 110 160, 170 120 S 280 80, 320 130" stroke="#8FF3D9" stroke-width="1" />
+          <path d="M-10 130 C 60 90, 110 160, 170 120 S 280 80, 320 130" stroke="#5DD9E8" stroke-width="1" />
         </svg>
 
         <!-- Holographic sheen — sweeps once on hover / focus, never loops -->
