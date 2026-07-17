@@ -59,14 +59,38 @@ const isDev = import.meta.dev
 
 const { buildCardUrl } = useDigiCardQr()
 
+// Every card gets its own real share preview: og:title/description already came
+// from card.meta, and the image now does too — either an explicit `ogImage` or,
+// if the client hasn't supplied dedicated photography yet, the card's own logo
+// (still square-safe in every preview surface, and needs zero extra asset work
+// when a new card is first created).
+const config = useRuntimeConfig()
+const siteBase = String(config.public.siteUrl).replace(/\/+$/, '')
+const canonicalUrl = buildCardUrl(card.slug)
+const ogImagePath = card.meta.ogImage ?? card.brand.logoPath
+const ogImageUrl = `${siteBase}${ogImagePath}`
+const ogTitle = card.meta.ogTitle ?? card.meta.title
+const ogDescription = card.meta.ogDescription ?? card.meta.description
+
 useHead({
   title: card.meta.title,
   meta: [
     { name: 'theme-color', content: card.meta.themeColor },
     { name: 'description', content: card.meta.description },
-    { property: 'og:title', content: card.meta.ogTitle ?? card.meta.title },
-    { property: 'og:description', content: card.meta.ogDescription ?? card.meta.description }
+    { property: 'og:type', content: 'website' },
+    { property: 'og:site_name', content: card.brand.orgName },
+    { property: 'og:locale', content: 'hy_AM' },
+    { property: 'og:url', content: canonicalUrl },
+    { property: 'og:title', content: ogTitle },
+    { property: 'og:description', content: ogDescription },
+    { property: 'og:image', content: ogImageUrl },
+    { property: 'og:image:alt', content: card.brand.orgName },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: ogTitle },
+    { name: 'twitter:description', content: ogDescription },
+    { name: 'twitter:image', content: ogImageUrl }
   ],
+  link: [{ rel: 'canonical', href: canonicalUrl }],
   script: [
     {
       type: 'application/ld+json',
@@ -75,9 +99,10 @@ useHead({
         '@type': card.template === 'luxury-beauty' ? 'HairSalon' : 'HomeAndConstructionBusiness',
         name: card.brand.orgName,
         description: card.meta.description,
+        image: ogImageUrl,
         telephone: card.contact.phoneIntl,
         email: card.contact.email,
-        url: buildCardUrl(card.slug),
+        url: canonicalUrl,
         ...(card.contact.address
           ? { address: { '@type': 'PostalAddress', streetAddress: card.contact.address } }
           : {}),

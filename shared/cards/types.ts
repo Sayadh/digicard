@@ -129,6 +129,14 @@ export interface CardMeta {
   themeColor: string
   ogTitle?: string
   ogDescription?: string
+  /**
+   * Public path (served from /public) used as og:image / twitter:image for link
+   * previews (WhatsApp, Instagram, iMessage, etc.) when this card's URL is shared.
+   * Omit to fall back to `brand.logoPath` automatically — a square logo still
+   * previews fine and means every card gets a correct share image "for free"
+   * with zero extra asset work when it's first created.
+   */
+  ogImage?: string
 }
 
 export interface CardBrand {

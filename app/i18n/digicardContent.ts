@@ -67,6 +67,7 @@ export interface DigicardLocaleContent {
   why: {
     eyebrow: string
     title: string
+    subtitle: string
     items: { title: string; description: string }[]
   }
   pricing: {
@@ -98,9 +99,6 @@ export interface DigicardLocaleContent {
     tagline: string
     navTitle: string
     contactTitle: string
-    legalTitle: string
-    privacy: string
-    terms: string
     copyright: string
   }
 }
@@ -200,7 +198,8 @@ export const digicardContent: Record<Locale, DigicardLocaleContent> = {
     },
     why: {
       eyebrow: 'Ինչու՞ DigiCard',
-      title: 'Ավելի խելացի ցանցագործման համար',
+      title: 'Ամեն ինչ, ինչ անհրաժեշտ է ժամանակակից թվային այցեքարտի համար',
+      subtitle: 'Պարզ գործիքներից մինչև հզոր հնարավորություններ․ DigiCard-ը մեկ տեղում է հավաքում այն ամենը, ինչ պետք է Ձեր բիզնեսին այսօր։',
       items: [
         { title: 'Առանց թղթային քարտերի', description: 'Երբեք չկորցնես կապ մեկ ծալված այցեքարտի պատճառով։' },
         { title: 'Միշտ արդիական տվյալներ', description: 'Փոխեցիր հեռախոսահամարդ՝ առանց նոր քարտեր տպելու։' },
@@ -253,9 +252,6 @@ export const digicardContent: Record<Locale, DigicardLocaleContent> = {
       tagline: 'Թվային այցեքարտեր, որոնք աշխատում են քո փոխարեն։',
       navTitle: 'Նավիգացիա',
       contactTitle: 'Կապ',
-      legalTitle: 'Իրավական',
-      privacy: 'Գաղտնիություն',
-      terms: 'Պայմաններ',
       copyright: 'Բոլոր իրավունքները պաշտպանված են։'
     }
   },
@@ -353,7 +349,8 @@ export const digicardContent: Record<Locale, DigicardLocaleContent> = {
     },
     why: {
       eyebrow: 'Why DigiCard?',
-      title: 'Built for smarter networking',
+      title: 'Everything you need for a modern digital business card',
+      subtitle: 'From simple tools to powerful capabilities — DigiCard brings together everything your business needs today.',
       items: [
         { title: 'No paper business cards', description: 'Never lose a connection to a crumpled card again.' },
         { title: 'Always updated information', description: 'Change your number without reprinting anything.' },
@@ -406,9 +403,6 @@ export const digicardContent: Record<Locale, DigicardLocaleContent> = {
       tagline: 'Digital business cards that work for you.',
       navTitle: 'Navigation',
       contactTitle: 'Contact',
-      legalTitle: 'Legal',
-      privacy: 'Privacy Policy',
-      terms: 'Terms',
       copyright: 'All rights reserved.'
     }
   },
@@ -506,7 +500,8 @@ export const digicardContent: Record<Locale, DigicardLocaleContent> = {
     },
     why: {
       eyebrow: 'Почему DigiCard?',
-      title: 'Создано для умного нетворкинга',
+      title: 'Всё, что нужно для современной цифровой визитки',
+      subtitle: 'От простых инструментов до мощных возможностей — DigiCard объединяет всё, что нужно вашему бизнесу сегодня.',
       items: [
         { title: 'Без бумажных визиток', description: 'Больше не теряйте контакты из-за мятой визитки.' },
         { title: 'Всегда актуальные данные', description: 'Меняйте номер телефона без перепечатки визиток.' },
@@ -559,9 +554,6 @@ export const digicardContent: Record<Locale, DigicardLocaleContent> = {
       tagline: 'Цифровые визитки, которые работают на вас.',
       navTitle: 'Навигация',
       contactTitle: 'Контакты',
-      legalTitle: 'Документы',
-      privacy: 'Конфиденциальность',
-      terms: 'Условия',
       copyright: 'Все права защищены.'
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <section id="features" class="relative bg-digi-black py-20 md:py-28 px-6 grain">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12 md:mb-16">
+      <div class="text-center mb-8 md:mb-10">
         <span v-reveal class="text-xs font-mono uppercase tracking-widest text-digi-indigo-light block mb-3">
           {{ d.features.eyebrow }}
         </span>
@@ -11,17 +11,17 @@
         <p v-reveal="100" class="text-white/50 text-sm md:text-base max-w-lg mx-auto">{{ d.features.subtitle }}</p>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
+      <div class="grid grid-cols-2 max-[380px]:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
         <div
           v-for="(feature, i) in features"
           :key="feature.label"
           v-reveal="Math.min(120 + i * 20, 400)"
-          class="group flex flex-col items-center text-center gap-2.5 rounded-2xl border border-digi-line bg-digi-surface px-3 py-5 hover:border-digi-indigo/40 hover:-translate-y-0.5 transition-all duration-300"
+          class="group flex w-full min-h-[104px] flex-col items-center justify-center text-center gap-2.5 rounded-2xl border border-digi-line bg-digi-surface px-3 py-4 transition-all duration-300 hover:border-digi-indigo/40 hover:-translate-y-1 hover:shadow-[0_0_22px_rgba(109,94,249,0.22)]"
         >
-          <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/[0.04] text-white/60 group-hover:text-digi-indigo-light group-hover:bg-digi-indigo/10 transition-colors duration-300">
-            <component :is="feature.icon" class="w-4 h-4" />
+          <span class="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-white/[0.07] text-white/75 transition-all duration-300 group-hover:scale-110 group-hover:text-digi-indigo-light group-hover:bg-digi-indigo/10">
+            <component :is="feature.icon" class="w-5 h-5" />
           </span>
-          <span class="text-[0.72rem] font-medium text-white/60 group-hover:text-white/90 transition-colors duration-300 leading-tight">
+          <span class="text-[0.78rem] font-medium text-white/75 leading-snug line-clamp-2 transition-colors duration-300 group-hover:text-white/95">
             {{ d.features.items[i] }}
           </span>
         </div>

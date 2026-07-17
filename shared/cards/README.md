@@ -40,6 +40,10 @@
     themeColor: string      // հեռախոսի browser bar գույնը (hex)
     ogTitle?: string        // եթե title-ից տարբեր է
     ogDescription?: string  // եթե description-ից տարբեր է
+    ogImage?: string        // WhatsApp/Instagram/iMessage share preview նկարը (բացարձակ /public path).
+                            // Չնշելու դեպքում ավտոմատ վերցվում է brand.logoPath-ը, այնպես որ
+                            // ամեն նոր քարտ, նույնիսկ առանց հատուկ social նկարի, ունենում է
+                            // ճիշտ preview նկար + title + description երբ իր հղումը կիսվում է։
   }
 
   brand: {
