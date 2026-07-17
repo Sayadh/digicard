@@ -6,14 +6,15 @@
   >
     <div class="flex items-center gap-1.5 p-1.5 bg-ink/90 backdrop-blur-xl rounded-full border border-hairline-dark shadow-lift-lg">
       <a
-        href="tel:+1234567890"
+        :href="`tel:${card!.contact.phoneIntl}`"
         :aria-label="t.dock.call"
         class="w-11 h-11 flex items-center justify-center rounded-full text-bone/80 hover:bg-bone/10 hover:text-mint-light transition-all duration-300 active:scale-90"
       >
         <PhoneIcon class="w-4 h-4" />
       </a>
       <a
-        href="https://wa.me/1234567890"
+        v-if="card!.contact.whatsapp"
+        :href="`https://wa.me/${card!.contact.phoneIntl.replace('+', '')}`"
         target="_blank"
         rel="noopener"
         :aria-label="t.dock.whatsapp"
@@ -37,4 +38,5 @@
 import { PhoneIcon, MessageCircleIcon, GiftIcon } from 'lucide-vue-next'
 
 const { t } = useLocale()
+const card = useCurrentCard()
 </script>

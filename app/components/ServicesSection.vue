@@ -34,7 +34,7 @@
             <h3 class="font-display text-base text-ink group-hover:text-moss-deep transition-colors">
               {{ service.title }}
             </h3>
-            <span class="font-mono text-sm text-ink/70 shrink-0">${{ service.price }}</span>
+            <span v-if="service.price" class="font-mono text-sm text-ink/70 shrink-0">${{ service.price }}</span>
           </div>
           <p class="text-xs text-stone leading-relaxed pr-4 mb-2">
             {{ service.description }}

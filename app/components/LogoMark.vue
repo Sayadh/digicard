@@ -4,8 +4,7 @@
     viewBox="0 0 48 48"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    role="img"
-    aria-label="Full House Cleaning mark"
+    aria-hidden="true"
   >
     <!-- The Arch: a doorway, an embrace, a house without a roofline cliché -->
     <path

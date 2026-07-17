@@ -45,14 +45,31 @@ export default <Partial<Config>>{
         'digi-line-soft': 'rgba(13, 13, 22, 0.09)',
         'digi-indigo': '#6D5EF9',
         'digi-indigo-light': '#8F7CFF',
-        'digi-violet': '#B15CF6'
+        'digi-violet': '#B15CF6',
+
+        // --- Luxury beauty template (e.g. hair-stylist) — editorial black/gold,
+        // Dior/Chanel/Aesop-inspired. Deliberately no pink/purple/saturated tones. ---
+        'lux-black': '#151515',
+        'lux-gold': '#C9A76A',
+        'lux-gold-light': '#DEC28C',
+        'lux-beige': '#EFE5D6',
+        'lux-ivory': '#FCFAF7',
+        'lux-white': '#FFFFFF',
+        'lux-bronze': '#B88A58',
+        'lux-text': '#1A1A1A',
+        'lux-muted': '#777777',
+        'lux-line': 'rgba(21, 21, 21, 0.09)',
+        'lux-line-dark': 'rgba(239, 229, 214, 0.14)'
       },
       fontFamily: {
-        // Armenian fallbacks matter here: Fraunces/Inter/IBM Plex Mono have no Armenian
-        // glyphs, so the browser needs a same-script fallback for hy content per character.
+        // Armenian fallbacks matter here: Fraunces/Cormorant/Inter/IBM Plex Mono have no
+        // Armenian glyphs, so the browser needs a same-script fallback for hy content.
         display: ['"Fraunces"', '"Noto Serif Armenian"', 'serif'],
         sans: ['"Inter"', '"Noto Sans Armenian"', 'sans-serif'],
-        mono: ['"IBM Plex Mono"', '"Noto Sans Armenian"', 'monospace']
+        mono: ['"IBM Plex Mono"', '"Noto Sans Armenian"', 'monospace'],
+        // Luxury template's editorial serif — thinner, more classical than Fraunces,
+        // closer to Vogue/Dior masthead type.
+        luxury: ['"Cormorant Garamond"', '"Noto Serif Armenian"', 'serif']
       },
       fontSize: {
         '2xs': ['0.6875rem', { lineHeight: '1rem', letterSpacing: '0.02em' }]
@@ -66,7 +83,10 @@ export default <Partial<Config>>{
         'digi-glow': '0 25px 70px -20px rgba(109, 94, 249, 0.5)',
         'digi-card': '0 1px 1px rgba(13, 13, 22, 0.03), 0 16px 40px -12px rgba(13, 13, 22, 0.12)',
         'digi-card-lg': '0 1px 1px rgba(13, 13, 22, 0.03), 0 40px 90px -25px rgba(13, 13, 22, 0.18)',
-        'digi-card-dark': '0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 25px 60px -18px rgba(0, 0, 0, 0.65)'
+        'digi-card-dark': '0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 25px 60px -18px rgba(0, 0, 0, 0.65)',
+        'lux-card': '0 1px 1px rgba(21, 21, 21, 0.03), 0 24px 60px -20px rgba(21, 21, 21, 0.16)',
+        'lux-card-lg': '0 1px 1px rgba(21, 21, 21, 0.03), 0 40px 90px -25px rgba(21, 21, 21, 0.2)',
+        'lux-glow': '0 20px 60px -15px rgba(201, 167, 106, 0.4)'
       },
       borderRadius: {
         xl2: '1.75rem'
@@ -102,6 +122,14 @@ export default <Partial<Config>>{
         digiorb: {
           '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
           '50%': { transform: 'translate(3%, -4%) scale(1.06)' }
+        },
+        sparkle: {
+          '0%, 100%': { opacity: '0.15', transform: 'scale(0.8)' },
+          '50%': { opacity: '0.9', transform: 'scale(1.15)' }
+        },
+        luxfloat: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' }
         }
       },
       animation: {
@@ -111,7 +139,9 @@ export default <Partial<Config>>{
         sheen: 'sheen 2.4s ease-in-out infinite',
         pulseglow: 'pulseglow 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         digifloat: 'digifloat 6s ease-in-out infinite',
-        digiorb: 'digiorb 12s ease-in-out infinite'
+        digiorb: 'digiorb 12s ease-in-out infinite',
+        sparkle: 'sparkle 3.4s ease-in-out infinite',
+        luxfloat: 'luxfloat 7s ease-in-out infinite'
       }
     }
   },

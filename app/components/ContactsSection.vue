@@ -1,18 +1,15 @@
 <template>
   <section id="contact" class="relative py-12 md:py-20 px-6 max-w-[clamp(20rem,80vw,48rem)] mx-auto">
     <div class="text-center mb-10 md:mb-14" v-reveal>
-      <span class="text-2xs font-mono uppercase tracking-widest2 text-mint-dim block mb-3">
+      <h2 class="font-display italic text-[clamp(1.6rem,2vw_+_1.15rem,2.05rem)] leading-tight tracking-wide text-moss-deep">
         {{ t.contact.eyebrow }}
-      </span>
-      <h2 class="font-display text-[clamp(1.85rem,2vw_+_1.4rem,2.35rem)] leading-tight text-ink">
-        {{ t.contact.title }}
       </h2>
     </div>
 
     <!-- A boarding-pass, not a button grid -->
     <div class="relative bg-paper rounded-3xl border border-hairline shadow-lift overflow-hidden" v-reveal="100">
 
-      <div class="grid grid-cols-3 divide-x divide-hairline">
+      <div :class="['grid divide-x divide-hairline', quickActions.length > 1 ? 'grid-cols-2' : 'grid-cols-1']">
         <a
           v-for="action in quickActions"
           :key="action.label"
@@ -67,11 +64,13 @@
         </div>
       </div>
 
-      <div class="flex justify-center gap-5 py-7 border-t border-hairline bg-ink/[0.02]">
+      <div v-if="socials.length" class="flex justify-center gap-5 py-7 border-t border-hairline bg-ink/[0.02]">
         <a
           v-for="social in socials"
           :key="social.label"
           :href="social.href"
+          target="_blank"
+          rel="noopener"
           :aria-label="social.label"
           class="w-10 h-10 rounded-full border border-hairline flex items-center justify-center text-ink shadow-lift-sm hover:bg-ink hover:text-mint-light hover:border-ink hover:-translate-y-0.5 transition-all duration-300"
         >
@@ -87,35 +86,34 @@ import { computed } from 'vue'
 import {
   PhoneIcon,
   MessageCircleIcon,
-  NavigationIcon,
   ChevronRightIcon,
   MailIcon,
-  GlobeIcon,
-  MapPinIcon,
   ClockIcon,
-  InstagramIcon,
-  MusicIcon,
-  FacebookIcon
+  InstagramIcon
 } from 'lucide-vue-next'
 
 const { t } = useLocale()
+const card = useCurrentCard()
 
-const quickActions = computed(() => [
-  { label: t.value.contact.call, href: 'tel:+1234567890', icon: PhoneIcon },
-  { label: t.value.contact.whatsapp, href: 'https://wa.me/1234567890', icon: MessageCircleIcon, external: true },
-  { label: t.value.contact.directions, href: 'https://maps.google.com', icon: NavigationIcon, external: true }
-])
+const quickActions = computed(() => {
+  const c = card.value!.contact
+  const actions = [{ label: t.value.contact.call, href: `tel:${c.phoneIntl}`, icon: PhoneIcon, external: false }]
+  if (c.whatsapp) {
+    actions.push({ label: t.value.contact.whatsapp, href: `https://wa.me/${c.phoneIntl.replace('+', '')}`, icon: MessageCircleIcon, external: true })
+  }
+  return actions
+})
 
-const details = computed(() => [
-  { label: t.value.contact.phoneLabel, value: '+1 (234) 567-890', href: 'tel:+1234567890', icon: PhoneIcon },
-  { label: t.value.contact.emailLabel, value: 'hello@fullhousecleaning.com', href: 'mailto:hello@fullhousecleaning.com', icon: MailIcon },
-  { label: t.value.contact.websiteLabel, value: 'fullhousecleaning.com', href: 'https://fullhousecleaning.com', icon: GlobeIcon, external: true },
-  { label: t.value.contact.addressLabel, value: t.value.contact.addressValue, href: 'https://maps.google.com', icon: MapPinIcon, external: true }
-])
+const details = computed(() => {
+  const c = card.value!.contact
+  return [
+    { label: t.value.contact.phoneLabel, value: c.phoneDisplay, href: `tel:${c.phoneIntl}`, icon: PhoneIcon },
+    { label: t.value.contact.emailLabel, value: c.email, href: `mailto:${c.email}`, icon: MailIcon }
+  ]
+})
 
-const socials = [
-  { label: 'Instagram', href: '#', icon: InstagramIcon },
-  { label: 'TikTok', href: '#', icon: MusicIcon },
-  { label: 'Facebook', href: '#', icon: FacebookIcon }
-]
+const socials = computed(() => {
+  const c = card.value!.contact
+  return c.instagramUrl ? [{ label: 'Instagram', href: c.instagramUrl, icon: InstagramIcon }] : []
+})
 </script>

@@ -74,28 +74,41 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { PlayIcon } from 'lucide-vue-next'
 
+interface VideoItem {
+  poster: string
+  mp4: string
+  label: string
+}
+
 const { t } = useLocale()
+const card = useCurrentCard()
 
-// Placeholder stock shots — replace src with the client's own photos/videos whenever ready.
-const photos = [
-  { src: '/gallery/photo-1.jpg', label: `${t.value.gallery.photoLabel} 1`, wide: true },
-  { src: '/gallery/photo-2.jpg', label: `${t.value.gallery.photoLabel} 2`, wide: false },
-  { src: '/gallery/photo-3.jpg', label: `${t.value.gallery.photoLabel} 3`, wide: false }
-]
+// Sourced from the current card's gallery — each client's own photos/videos,
+// registered in shared/cards/<slug>.ts.
+const photos = computed(() =>
+  card.value!.gallery.photos.map((photo, i) => ({
+    src: photo.src,
+    label: `${t.value.gallery.photoLabel} ${i + 1}`,
+    wide: Boolean(photo.wide)
+  }))
+)
 
-const videos = [
-  { poster: '/gallery/video-1-poster.jpg', mp4: '/gallery/video-1.mp4', label: `${t.value.gallery.videoLabel} 1` },
-  { poster: '/gallery/video-2-poster.jpg', mp4: '/gallery/video-2.mp4', label: `${t.value.gallery.videoLabel} 2` }
-]
+const videos = computed(() =>
+  card.value!.gallery.videos.map((video, i) => ({
+    poster: video.poster,
+    mp4: video.mp4,
+    label: `${t.value.gallery.videoLabel} ${i + 1}`
+  }))
+)
 
 const lightboxOpen = ref(false)
 const videoReady = ref(false)
-const activeVideo = ref<typeof videos[number] | null>(null)
+const activeVideo = ref<VideoItem | null>(null)
 
-async function openVideo(video: typeof videos[number]) {
+async function openVideo(video: VideoItem) {
   activeVideo.value = video
   lightboxOpen.value = true
   videoReady.value = false

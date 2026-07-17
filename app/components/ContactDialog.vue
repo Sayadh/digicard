@@ -107,6 +107,7 @@ import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
 import { XIcon, CheckIcon } from 'lucide-vue-next'
 
 const { t } = useLocale()
+const card = useCurrentCard()
 const { isOpen, context, close } = useContactDialog()
 
 const name = ref('')
@@ -164,7 +165,7 @@ function submit() {
   const body = encodeURIComponent(
     `${t.value.dialog.nameLabel}: ${name.value}\n${t.value.dialog.phoneLabel}: ${phone.value}\n\n${message.value}`
   )
-  const mailto = `mailto:hello@fullhousecleaning.com?subject=${subject}&body=${body}`
+  const mailto = `mailto:${card.value!.contact.email}?subject=${subject}&body=${body}`
 
   if (import.meta.client) {
     window.location.href = mailto

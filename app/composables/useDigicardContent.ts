@@ -1,6 +1,6 @@
 import { computed } from 'vue'
 import { digicardContent, type DigicardLocaleContent } from '~/i18n/digicardContent'
-import type { Locale } from '~/i18n/content'
+import type { Locale } from '#shared/cards'
 
 /**
  * Content for the DigiCard SaaS marketing homepage. Shares the same site-wide

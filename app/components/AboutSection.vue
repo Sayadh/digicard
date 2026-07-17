@@ -18,17 +18,9 @@
       </p>
     </div>
 
-    <p class="text-sm text-stone leading-relaxed text-center max-w-[22rem] md:max-w-md mx-auto mb-10" v-reveal="160">
+    <p class="text-sm text-stone leading-relaxed text-center max-w-[22rem] md:max-w-md mx-auto" v-reveal="160">
       {{ t.about.paragraph }}
     </p>
-
-    <div class="flex items-center justify-center gap-3 text-2xs font-mono uppercase tracking-wider text-stone-light flex-wrap" v-reveal="220">
-      <span>{{ t.about.tags[0] }}</span>
-      <span class="w-1 h-1 rounded-full bg-hairline" />
-      <span>{{ t.about.tags[1] }}</span>
-      <span class="w-1 h-1 rounded-full bg-hairline" />
-      <span>{{ t.about.tags[2] }}</span>
-    </div>
   </section>
 </template>
 

@@ -21,9 +21,9 @@
            on its own terms; a sr-only h1 preserves the page heading either way. -->
       <div class="mb-3" v-reveal="40">
         <div v-if="logoAvailable" class="inline-flex items-center justify-center bg-bone rounded-2xl p-0 shadow-lift-lg">
-          <img :src="logoPath" alt="Full House Cleaning" class="h-[clamp(6.5rem,10vw_+_3.5rem,10.5rem)] w-auto rounded-2xl" />
+          <img :src="logoPath" :alt="card!.brand.orgName" class="h-[clamp(6.5rem,10vw_+_3.5rem,10.5rem)] w-auto rounded-2xl" />
         </div>
-        <h1 v-if="logoAvailable" class="sr-only">Full House Cleaning</h1>
+        <h1 v-if="logoAvailable" class="sr-only">{{ card!.brand.orgName }}</h1>
         <h1 v-else class="font-display text-[clamp(2.75rem,4vw_+_1.75rem,4rem)] leading-[0.98] tracking-tight text-bone block">
           {{ t.hero.title1 }}
           <span class="block italic font-normal text-mint-light">{{ t.hero.title2 }}</span>
@@ -72,6 +72,8 @@ import { ref, watch, onMounted } from 'vue'
 import { ContactIcon, Share2Icon } from 'lucide-vue-next'
 
 const { t } = useLocale()
+const card = useCurrentCard()
+const { buildCardUrl } = useDigiCardQr()
 const shareLabel = ref(t.value.hero.share)
 
 const { available: logoAvailable, check: checkLogo, path: logoPath } = useBrandLogo()
@@ -83,9 +85,9 @@ watch(() => t.value.hero.share, (val) => {
 
 async function share() {
   const shareData = {
-    title: 'Full House Cleaning',
+    title: card.value!.brand.orgName,
     text: t.value.hero.tagline,
-    url: typeof window !== 'undefined' ? window.location.href : 'https://fullhousecleaning.com'
+    url: typeof window !== 'undefined' ? window.location.href : buildCardUrl(card.value!.slug)
   }
 
   if (typeof navigator !== 'undefined' && navigator.share) {

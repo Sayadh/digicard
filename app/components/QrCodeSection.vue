@@ -12,10 +12,17 @@
 
     <div v-reveal="100">
       <DigiCardQrCode
-        slug="full-house-cleaning"
-        accent-color="#036672"
-        accent-color-secondary="#5AB6C3"
+        :slug="card!.slug"
+        :accent-color="card!.brand.accentColor"
+        :accent-color-secondary="card!.brand.accentColorSecondary"
       />
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+// Dev-only testing tool (see pages/[slug].vue, gated behind import.meta.dev) —
+// reads the current card's slug and brand colors so the QR always matches
+// whichever card is being previewed locally.
+const card = useCurrentCard()
+</script>
