@@ -215,7 +215,7 @@ export const digicardContent: Record<Locale, DigicardLocaleContent> = {
       eyebrow: 'Գներ',
       title: 'Թափանցիկ և պարզ',
       planName: 'DigiCard Պրեմիում',
-      setupPrice: '25,000',
+      setupPrice: '23,000',
       setupUnit: '֏',
       setupLabel: 'Միանվագ կարգավորման վճար',
       setupFeatures: [
@@ -366,7 +366,7 @@ export const digicardContent: Record<Locale, DigicardLocaleContent> = {
       eyebrow: 'Pricing',
       title: 'Transparent, and worth it',
       planName: 'DigiCard Premium',
-      setupPrice: '25,000',
+      setupPrice: '23,000',
       setupUnit: 'AMD',
       setupLabel: 'One-time setup fee',
       setupFeatures: [
@@ -517,7 +517,7 @@ export const digicardContent: Record<Locale, DigicardLocaleContent> = {
       eyebrow: 'Цены',
       title: 'Прозрачно и оправданно',
       planName: 'DigiCard Premium',
-      setupPrice: '25 000',
+      setupPrice: '23 000',
       setupUnit: '֏',
       setupLabel: 'Разовая плата за настройку',
       setupFeatures: [
