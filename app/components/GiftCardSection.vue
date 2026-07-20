@@ -16,52 +16,64 @@
 
       <div
         ref="el"
-        class="group relative aspect-[1.586/1] rounded-[22px] bg-gradient-to-br from-ink-soft via-ink to-[#0F211F] text-bone shadow-card border border-hairline-dark overflow-hidden select-none"
+        class="group relative rounded-[22px] text-bone shadow-card border border-hairline-dark overflow-hidden select-none"
+        :class="cardImageAvailable ? 'bg-bone' : 'aspect-[1.586/1] bg-gradient-to-br from-ink-soft via-ink to-[#0F211F]'"
         :style="style"
         @pointermove="onMove"
         @pointerleave="onLeave"
       >
-        <!-- Embossed watermark mark, oversized and faint — the brand as texture -->
-        <LogoMark class="absolute -right-6 -bottom-8 w-40 h-40 text-bone/[0.05]" :spark="false" aria-hidden="true" />
+        <!-- Real card-face artwork, when the client has supplied one at /cards/<slug>/card.png -->
+        <img
+          v-if="cardImageAvailable"
+          :src="cardImagePath"
+          :alt="t.giftCard.cardBrand"
+          class="block w-full h-auto"
+        />
 
-        <!-- Fine current line engraved across the card -->
-        <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 300 190" preserveAspectRatio="none" fill="none">
-          <path d="M-10 130 C 60 90, 110 160, 170 120 S 280 80, 320 130" stroke="#5DD9E8" stroke-width="1" />
-        </svg>
+        <!-- Fallback: hand-built card face, used until real artwork exists for this card -->
+        <template v-else>
+          <!-- Embossed watermark mark, oversized and faint — the brand as texture -->
+          <LogoMark class="absolute -right-6 -bottom-8 w-40 h-40 text-bone/[0.05]" :spark="false" aria-hidden="true" />
+
+          <!-- Fine current line engraved across the card -->
+          <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 300 190" preserveAspectRatio="none" fill="none">
+            <path d="M-10 130 C 60 90, 110 160, 170 120 S 280 80, 320 130" stroke="#5DD9E8" stroke-width="1" />
+          </svg>
+
+          <div class="relative z-10 h-full flex flex-col justify-between p-6">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="text-2xs font-mono uppercase tracking-widest2 text-mint-light">
+                  {{ t.giftCard.cardBrand }}
+                </div>
+                <div class="text-[9px] text-bone/40 uppercase tracking-wider mt-1">
+                  {{ t.giftCard.cardSub }}
+                </div>
+              </div>
+              <!-- Chip -->
+              <div class="w-9 h-[26px] rounded-[5px] bg-gradient-to-br from-mint-light via-mint to-mint-dim opacity-90 relative overflow-hidden">
+                <div class="absolute inset-0.5 grid grid-cols-3 grid-rows-2 gap-px opacity-40">
+                  <div v-for="n in 6" :key="n" class="border border-ink/30" />
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-end justify-between">
+              <div>
+                <div class="text-[9px] text-bone/40 uppercase tracking-wider mb-1">{{ t.giftCard.cardNoLabel }}</div>
+                <div class="text-sm font-mono tracking-[0.2em] text-bone/90">FHC&nbsp;9088&nbsp;VIP</div>
+              </div>
+              <svg class="w-7 h-7 text-mint-light/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                <path d="M3 3H9V9H3V3ZM3 15H9V21H3V15ZM15 3H21V9H15V3ZM18 18H18.01M15 15H15.01M21 15H21.01M15 21H15.01M21 21H21.01" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </template>
 
         <!-- Holographic sheen — sweeps once on hover / focus, never loops -->
         <div
           class="absolute -inset-y-10 -left-1/2 w-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent -rotate-12 -translate-x-[150%] group-hover:translate-x-[420%] transition-transform duration-[1400ms] ease-out pointer-events-none"
         />
-
-        <div class="relative z-10 h-full flex flex-col justify-between p-6">
-          <div class="flex items-start justify-between">
-            <div>
-              <div class="text-2xs font-mono uppercase tracking-widest2 text-mint-light">
-                {{ t.giftCard.cardBrand }}
-              </div>
-              <div class="text-[9px] text-bone/40 uppercase tracking-wider mt-1">
-                {{ t.giftCard.cardSub }}
-              </div>
-            </div>
-            <!-- Chip -->
-            <div class="w-9 h-[26px] rounded-[5px] bg-gradient-to-br from-mint-light via-mint to-mint-dim opacity-90 relative overflow-hidden">
-              <div class="absolute inset-0.5 grid grid-cols-3 grid-rows-2 gap-px opacity-40">
-                <div v-for="n in 6" :key="n" class="border border-ink/30" />
-              </div>
-            </div>
-          </div>
-
-          <div class="flex items-end justify-between">
-            <div>
-              <div class="text-[9px] text-bone/40 uppercase tracking-wider mb-1">{{ t.giftCard.cardNoLabel }}</div>
-              <div class="text-sm font-mono tracking-[0.2em] text-bone/90">FHC&nbsp;9088&nbsp;VIP</div>
-            </div>
-            <svg class="w-7 h-7 text-mint-light/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-              <path d="M3 3H9V9H3V3ZM3 15H9V21H3V15ZM15 3H21V9H15V3ZM18 18H18.01M15 15H15.01M21 15H21.01M15 21H15.01M21 21H21.01" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -104,9 +116,15 @@
 </template>
 
 <script setup lang="ts">
+import { computed, onMounted } from 'vue'
 import { useTilt } from '~/composables/useTilt'
 
 const { el, style, onMove, onLeave } = useTilt(5)
 const { t } = useLocale()
 const contactDialog = useContactDialog()
+
+const card = useCurrentCard()
+const cardImagePath = computed(() => `/cards/${card.value?.slug}/card.png`)
+const { available: cardImageAvailable, check: checkCardImage } = useImageAvailability(cardImagePath)
+onMounted(checkCardImage)
 </script>
