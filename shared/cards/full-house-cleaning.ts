@@ -30,13 +30,16 @@ export const fullHouseCleaningCard: CardDefinition = {
 
   gallery: {
     photos: [
-      { src: '/cards/full-house-cleaning/gallery/photo-1.jpg', wide: true },
-      { src: '/cards/full-house-cleaning/gallery/photo-2.jpg' },
-      { src: '/cards/full-house-cleaning/gallery/photo-3.jpg' }
+      { src: '/cards/full-house-cleaning/gallery/photo-1.PNG', wide: true },
+      { src: '/cards/full-house-cleaning/gallery/photo-2.jpeg' },
+      { src: '/cards/full-house-cleaning/gallery/photo-6.PNG' },
+      { src: '/cards/full-house-cleaning/gallery/photo-3.jpeg' },
+      { src: '/cards/full-house-cleaning/gallery/photo-4.JPG' },
+      { src: '/cards/full-house-cleaning/gallery/photo-7.JPG' }
     ],
     videos: [
-      { poster: '/cards/full-house-cleaning/gallery/video-1-poster.jpg', mp4: '/cards/full-house-cleaning/gallery/video-1.mp4' },
-      { poster: '/cards/full-house-cleaning/gallery/video-2-poster.jpg', mp4: '/cards/full-house-cleaning/gallery/video-2.mp4' }
+      { poster: '/cards/full-house-cleaning/gallery/video-1-poster.MOV', mp4: '/cards/full-house-cleaning/gallery/video-1.MOV' },
+      { poster: '/cards/full-house-cleaning/gallery/video-2-poster.MOV', mp4: '/cards/full-house-cleaning/gallery/video-2.MOV' }
     ]
   },
 
