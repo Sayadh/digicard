@@ -94,6 +94,7 @@
 - **`dialog.messageDefaultBook` ֆունկցիա է** (ոչ string) — normal է, բայց երբեք մի փորձիր այն դնել useState-ի մեջ ուղիղ (ֆունկցիաները serialize չեն լինում SSR payload-ում)։ Ահա թե ինչու `useCurrentCard()`-ը միայն slug-ն է պահում state-ում և ամբողջ card-ը վերականգնում է registry-ից։
 - **QR customization panel-ը (`QrCodeSection`) միայն dev/local-ում է երևում** (`import.meta.dev` gate `pages/[slug].vue`-ում)։ Production-ում ամբողջովին բացակայում է build-ից։ Դա design-ով է, ոչ bug։
 - **QR-ը deterministic է** — նույն slug + նույն accentColor/accentColorSecondary = միշտ absolutely նույն QR պատկեր։ Slug-ը երբեք չփոխել, եթե արդեն տպված QR կա։
+- **`gallery.videos[].poster` պարտադիր պետք է լինի իրական պատկեր (jpg/png), ոչ թե video ֆայլ** — բրաուզերը չի կարող `<img>`-ում .mov/.mp4 ցույց տալ (broken-image icon)։ Իսկ `.mp4`-ը պետք է իրապես H.264+AAC mp4 container լինի, ոչ թե հեռախոսից եկած `.MOV` ուղղակի rename-ված `.mp4`-ի (հատկապես HEVC codec-ով նկարահանված .MOV-երը չեն աշխատում Chrome/Firefox-ում)։ Poster generate անելու և codec ստուգելու համար՝ `ffprobe -show_entries stream=codec_name <file>`, իսկ վերափոխման համար՝ `ffmpeg -i in.MOV -c:v libx264 -crf 23 -c:a aac -movflags +faststart out.mp4` և poster-ի համար `ffmpeg -i out.mp4 -ss 00:00:00.5 -vframes 1 out-poster.jpg`։
 
 ## Reference օրինակ
 
