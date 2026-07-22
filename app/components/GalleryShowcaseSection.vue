@@ -9,16 +9,28 @@
       </h2>
     </div>
 
-    <!-- Photos: placeholder shots from public/gallery/ — swap the src paths for the client's own photos anytime -->
+    <!-- Photos: click any one to open it enlarged in a lightbox -->
     <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-3 md:mb-4" v-reveal="100">
-      <div
+      <button
         v-for="photo in photos"
         :key="photo.src"
-        class="relative rounded-2xl overflow-hidden bg-paper border border-hairline"
+        type="button"
+        class="group relative rounded-2xl overflow-hidden bg-paper border border-hairline"
         :class="photo.wide ? 'col-span-2 aspect-[16/10] md:col-span-1 md:aspect-[4/5]' : 'aspect-square md:aspect-[4/5]'"
+        @click="openPhoto(photo)"
       >
-        <img :src="photo.src" :alt="photo.label" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-      </div>
+        <img
+          :src="photo.src"
+          :alt="photo.label"
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/10 transition-colors duration-300 flex items-center justify-center">
+          <span class="w-10 h-10 rounded-full bg-bone/90 flex items-center justify-center opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300">
+            <ExpandIcon class="w-4 h-4 text-ink" />
+          </span>
+        </div>
+      </button>
     </div>
 
     <!-- Videos: clicking actually opens a player. Falls back gracefully until the real .mp4 files exist. -->
@@ -70,17 +82,49 @@
         </div>
       </div>
     </Teleport>
+
+    <!-- Photo lightbox: opens any gallery photo at full size -->
+    <Teleport to="body">
+      <div
+        v-if="photoLightboxOpen"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-ink/80 backdrop-blur-sm px-4"
+        @click.self="closePhoto"
+      >
+        <div class="relative w-full max-w-3xl">
+          <button
+            type="button"
+            class="absolute -top-10 right-0 text-bone/70 hover:text-bone text-2xs font-mono uppercase tracking-wider"
+            @click="closePhoto"
+          >
+            {{ t.gallery.close }}
+          </button>
+
+          <img
+            v-if="activePhoto"
+            :src="activePhoto.src"
+            :alt="activePhoto.label"
+            class="w-full max-h-[80vh] object-contain rounded-2xl bg-ink"
+          />
+        </div>
+      </div>
+    </Teleport>
   </section>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { PlayIcon } from 'lucide-vue-next'
+import { PlayIcon, Expand as ExpandIcon } from 'lucide-vue-next'
 
 interface VideoItem {
   poster: string
   mp4: string
   label: string
+}
+
+interface PhotoItem {
+  src: string
+  label: string
+  wide: boolean
 }
 
 const { t } = useLocale()
@@ -125,5 +169,18 @@ async function openVideo(video: VideoItem) {
 function closeVideo() {
   lightboxOpen.value = false
   activeVideo.value = null
+}
+
+const photoLightboxOpen = ref(false)
+const activePhoto = ref<PhotoItem | null>(null)
+
+function openPhoto(photo: PhotoItem) {
+  activePhoto.value = photo
+  photoLightboxOpen.value = true
+}
+
+function closePhoto() {
+  photoLightboxOpen.value = false
+  activePhoto.value = null
 }
 </script>
