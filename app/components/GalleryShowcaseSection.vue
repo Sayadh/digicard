@@ -47,9 +47,6 @@
         <div class="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-mint flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
           <PlayIcon class="w-5 h-5 text-ink ml-0.5" fill="currentColor" />
         </div>
-        <span class="absolute bottom-3 left-4 text-2xs font-mono uppercase tracking-wider text-bone/70">
-          {{ video.label }}
-        </span>
       </button>
     </div>
 
