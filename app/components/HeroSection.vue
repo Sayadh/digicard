@@ -1,5 +1,5 @@
 <template>
-  <section class="relative bg-ink text-bone overflow-hidden grain">
+  <section class="relative bg-gradient-to-br from-hero-from to-hero-to text-bone overflow-hidden grain">
     <!-- Depth: a slow mint glow anchored top-right, never centered, never symmetrical -->
     <div class="absolute -top-32 -right-24 w-80 h-80 rounded-full bg-mint/10 blur-[90px] pointer-events-none" />
     <div class="absolute top-1/3 -left-28 w-64 h-64 rounded-full bg-moss/20 blur-[100px] pointer-events-none" />

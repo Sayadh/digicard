@@ -32,6 +32,12 @@ export default <Partial<Config>>{
         'stone-light': 'var(--card-stone-light, #9CA39D)',
         hairline: 'var(--card-hairline, rgba(35, 57, 56, 0.12))',
         'hairline-dark': 'var(--card-hairline-dark, rgba(247, 248, 245, 0.12))',
+        // Full-bleed Hero/Footer backdrop only — richer than plain `ink` when a
+        // card has a `theme`. Both fall back to the same flat `ink` hex, so a
+        // `bg-gradient-to-br from-hero-from to-hero-to` renders as an identical
+        // solid color for any card that hasn't set a theme.
+        'hero-from': 'var(--card-hero-from, #183332)',
+        'hero-to': 'var(--card-hero-to, #183332)',
 
         // --- DigiCard (SaaS marketing homepage) — its own identity, separate from the
         // Full House Cleaning card brand above. Indigo/violet, Stripe/Linear-inspired. ---

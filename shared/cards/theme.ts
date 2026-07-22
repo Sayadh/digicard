@@ -132,6 +132,14 @@ export function buildThemeVars(theme: CardTheme): Record<string, string> {
   const mint = toRgba(accentRgb, 0.69)
   const mintDim = atLightness(accent, 23, 1.1)
 
+  // Full-bleed hero/footer background — richer and more saturated than plain
+  // `ink` (which stays reserved for buttons/text/card faces). Same accent hue,
+  // pushed to a vivid mid-dark teal, fading into `ink` so white hero text still
+  // reads cleanly at every point in the gradient.
+  const [accentHue] = rgbToHsl(...accentRgb)
+  const heroFrom = toHex(hslToRgb(accentHue, 78, 38))
+  const heroTo = ink
+
   return {
     '--card-ink': ink,
     '--card-ink-soft': inkSoft,
@@ -140,6 +148,8 @@ export function buildThemeVars(theme: CardTheme): Record<string, string> {
     '--card-mint': mint,
     '--card-mint-light': mintLight,
     '--card-mint-dim': mintDim,
+    '--card-hero-from': heroFrom,
+    '--card-hero-to': heroTo,
     '--card-moss': moss,
     '--card-moss-deep': mossDeep,
     '--card-stone': stone,

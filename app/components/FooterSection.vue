@@ -1,5 +1,5 @@
 <template>
-  <footer class="relative bg-ink text-bone pt-14 pb-24 md:pt-20 md:pb-12 px-6 grain overflow-hidden">
+  <footer class="relative bg-gradient-to-br from-hero-from to-hero-to text-bone pt-14 pb-24 md:pt-20 md:pb-12 px-6 grain overflow-hidden">
     <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-mint/10 blur-[100px] pointer-events-none" aria-hidden="true" />
 
     <div class="relative z-10 max-w-lg mx-auto flex flex-col items-center text-center">
