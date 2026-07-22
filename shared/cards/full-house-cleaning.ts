@@ -124,6 +124,8 @@ export const fullHouseCleaningCard: CardDefinition = {
         bookTitlePrefix: 'Պատվիրել՝',
         promptGift: 'Եթե ցանկանում եք նվեր-քարտ պատվիրել, խնդրում ենք գրեք կամ զանգահարեք մեզ։',
         promptService: (service: string) => `Եթե ցանկանում եք պատվիրել «${service}», խնդրում ենք գրեք կամ զանգահարեք մեզ։`,
+        waMessageGift: 'Բարև, ուզում եմ նվեր-քարտ պատվիրել։',
+        waMessageService: (service: string) => `Բարև, ուզում եմ պատվիրել «${service}»։`,
         whatsapp: 'WhatsApp',
         call: 'Զանգել',
         close: 'Փակել'
@@ -202,6 +204,8 @@ export const fullHouseCleaningCard: CardDefinition = {
         bookTitlePrefix: 'Book:',
         promptGift: "If you'd like to order a gift card, please message us or give us a call.",
         promptService: (service: string) => `If you'd like to book "${service}", please message us or give us a call.`,
+        waMessageGift: "Hi, I'd like to order a gift card.",
+        waMessageService: (service: string) => `Hi, I'd like to book "${service}".`,
         whatsapp: 'WhatsApp',
         call: 'Call',
         close: 'Close'
@@ -280,6 +284,8 @@ export const fullHouseCleaningCard: CardDefinition = {
         bookTitlePrefix: 'Бронирование:',
         promptGift: 'Если хотите заказать подарочную карту, пожалуйста, напишите нам или позвоните.',
         promptService: (service: string) => `Если хотите заказать «${service}», пожалуйста, напишите нам или позвоните.`,
+        waMessageGift: 'Здравствуйте, хочу заказать подарочную карту.',
+        waMessageService: (service: string) => `Здравствуйте, хочу заказать «${service}».`,
         whatsapp: 'WhatsApp',
         call: 'Позвонить',
         close: 'Закрыть'

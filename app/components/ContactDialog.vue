@@ -79,7 +79,17 @@ const prompt = computed(() => {
   return ctx.type === 'gift' ? t.value.dialog.promptGift : t.value.dialog.promptService(ctx.name)
 })
 
-const waHref = computed(() => (card.value ? waLink(card.value.contact, prompt.value) : '#'))
+// Pre-filled into the WhatsApp message box — deliberately separate from `prompt`
+// above: `prompt` is instructional copy shown *in the dialog* ("please message
+// or call us"), whereas this is the actual outgoing message, written in the
+// customer's own voice ("Hi, I'd like to..."), so it reads naturally once it
+// lands in the business's WhatsApp inbox.
+const waMessage = computed(() => {
+  const ctx = context.value
+  return ctx.type === 'gift' ? t.value.dialog.waMessageGift : t.value.dialog.waMessageService(ctx.name)
+})
+
+const waHref = computed(() => (card.value ? waLink(card.value.contact, waMessage.value) : '#'))
 const telHref = computed(() => (card.value ? telLink(card.value.contact) : '#'))
 
 function onKeydown(e: KeyboardEvent) {

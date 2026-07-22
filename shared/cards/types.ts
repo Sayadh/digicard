@@ -94,6 +94,14 @@ export interface LocaleContent {
     promptGift: string
     /** Shown for a service's "book" CTA — takes the service name. */
     promptService: (service: string) => string
+    /**
+     * Pre-filled into the WhatsApp message box (wa.me?text=...) when the WhatsApp
+     * button is tapped — written in the customer's own voice, unlike `promptGift`
+     * above (which is instructional copy shown inside the dialog itself).
+     */
+    waMessageGift: string
+    /** Same as `waMessageGift`, for a specific service's "book" CTA. */
+    waMessageService: (service: string) => string
     /** WhatsApp button label — hidden entirely when contact.whatsapp is false. */
     whatsapp: string
     /** Call button label. */
