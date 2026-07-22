@@ -98,7 +98,7 @@
       <div class="flex flex-col items-center md:items-start gap-3" v-reveal="80">
         <button
           type="button"
-          class="w-full max-w-[17rem] md:max-w-none bg-ink text-bone font-medium py-4 rounded-full shadow-lift hover:bg-ink-soft transition-all duration-300 active:scale-[0.97] text-xs uppercase tracking-widest2"
+          class="w-full max-w-[17rem] md:max-w-none bg-gradient-to-br from-hero-from to-hero-to text-bone font-medium py-4 rounded-full shadow-lift hover:brightness-110 transition-all duration-300 active:scale-[0.97] text-xs uppercase tracking-widest2"
           @click="contactDialog.open({ type: 'gift' })"
         >
           {{ t.giftCard.ctaPrimary }}
