@@ -12,6 +12,8 @@
  * page route, and the vCard route all resolve everything from this object.
  */
 
+import type { CardTheme } from './theme'
+
 export type Locale = 'hy' | 'en' | 'ru'
 
 export interface ServiceItem {
@@ -280,6 +282,13 @@ export interface CardDefinition {
   brand: CardBrand
   contact: CardContact
   gallery: CardGallery
+  /**
+   * 'cleaning-service' template only. Two brand hex colors that the entire
+   * page's palette (backgrounds, text, hairlines, shadows, accent states) is
+   * derived from — see shared/cards/theme.ts. Omit to keep the template's
+   * original charcoal-green/mint look untouched.
+   */
+  theme?: CardTheme
   /** Required for template 'cleaning-service'. */
   content?: Record<Locale, LocaleContent>
   /** Required for template 'luxury-beauty'. */

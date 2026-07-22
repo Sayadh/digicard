@@ -12,24 +12,26 @@ export default <Partial<Config>>{
   theme: {
     extend: {
       colors: {
-        // Ink — the brand's real dark teal, the gravity of the mark
-        ink: '#183332',
-        'ink-soft': '#233938',
-        // Bone — the brand's real near-white, the air
-        bone: '#F7F8F5',
-        paper: '#FCFDFC',
-        // Mint — brand accent
-        mint: '#5AB6C3B0',
-        'mint-light': '#5DD9E8',
-        'mint-dim': '#036672',
-        // Moss — quiet secondary green, freshness without shouting
-        moss: '#4B6357',
-        'moss-deep': '#324840',
-        // Stone — text and hairlines
-        stone: '#6E7570',
-        'stone-light': '#9CA39D',
-        hairline: 'rgba(35, 57, 56, 0.12)',
-        'hairline-dark': 'rgba(247, 248, 245, 0.12)',
+        // Every cleaning-service token below resolves through a CSS custom property
+        // first. A card with no `theme` set never has that variable defined, so it
+        // falls through to the literal value here — today's real charcoal/mint
+        // palette — meaning this refactor changes nothing visually by default.
+        // A card WITH a `theme` (see shared/cards/theme.ts) gets its own derived
+        // values injected as inline CSS vars on the page root, repainting the
+        // entire template through inheritance alone — no component changes.
+        ink: 'var(--card-ink, #183332)',
+        'ink-soft': 'var(--card-ink-soft, #233938)',
+        bone: 'var(--card-bone, #F7F8F5)',
+        paper: 'var(--card-paper, #FCFDFC)',
+        mint: 'var(--card-mint, #5AB6C3B0)',
+        'mint-light': 'var(--card-mint-light, #5DD9E8)',
+        'mint-dim': 'var(--card-mint-dim, #036672)',
+        moss: 'var(--card-moss, #4B6357)',
+        'moss-deep': 'var(--card-moss-deep, #324840)',
+        stone: 'var(--card-stone, #6E7570)',
+        'stone-light': 'var(--card-stone-light, #9CA39D)',
+        hairline: 'var(--card-hairline, rgba(35, 57, 56, 0.12))',
+        'hairline-dark': 'var(--card-hairline-dark, rgba(247, 248, 245, 0.12))',
 
         // --- DigiCard (SaaS marketing homepage) — its own identity, separate from the
         // Full House Cleaning card brand above. Indigo/violet, Stripe/Linear-inspired. ---
@@ -75,11 +77,11 @@ export default <Partial<Config>>{
         '2xs': ['0.6875rem', { lineHeight: '1rem', letterSpacing: '0.02em' }]
       },
       boxShadow: {
-        'lift-sm': '0 2px 10px rgba(24, 51, 50, 0.05)',
-        lift: '0 12px 40px rgba(24, 51, 50, 0.08)',
-        'lift-lg': '0 30px 70px rgba(24, 51, 50, 0.16)',
-        card: '0 40px 80px -20px rgba(24, 51, 50, 0.45)',
-        mint: '0 4px 14px rgba(90, 182, 195, 0.22)',
+        'lift-sm': 'var(--card-shadow-lift-sm, 0 2px 10px rgba(24, 51, 50, 0.05))',
+        lift: 'var(--card-shadow-lift, 0 12px 40px rgba(24, 51, 50, 0.08))',
+        'lift-lg': 'var(--card-shadow-lift-lg, 0 30px 70px rgba(24, 51, 50, 0.16))',
+        card: 'var(--card-shadow-card, 0 40px 80px -20px rgba(24, 51, 50, 0.45))',
+        mint: 'var(--card-shadow-mint, 0 4px 14px rgba(90, 182, 195, 0.22))',
         'digi-glow': '0 25px 70px -20px rgba(109, 94, 249, 0.5)',
         'digi-card': '0 1px 1px rgba(13, 13, 22, 0.03), 0 16px 40px -12px rgba(13, 13, 22, 0.12)',
         'digi-card-lg': '0 1px 1px rgba(13, 13, 22, 0.03), 0 40px 90px -25px rgba(13, 13, 22, 0.18)',

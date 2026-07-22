@@ -53,6 +53,16 @@
     accentColorSecondary: string // երկրորդային գույն — QR gradient-ի համար
   }
 
+  // Միայն 'cleaning-service' template-ի համար։ Երկու hex գույն, որոնցից ամբողջ
+  // էջի պալիտրան (ֆոն, տեքստ, hairline-ներ, shadow-ներ, accent) ավտոմատ
+  // ածանցվում է (տես shared/cards/theme.ts) — ոչ մի component-ի ձեռքով
+  // touch անել պետք չէ, գույները cascade են լինում CSS custom property-ներով։
+  // Չնշելու դեպքում card-ը ստանում է template-ի original charcoal/mint տեսքը։
+  theme?: {
+    dark: string   // հիմնական մուգ գույն, օր. '#4A5254'
+    accent: string // վառ accent գույն, օր. '#66DBE3'
+  }
+
   contact: {
     phoneIntl: string       // '+374XXXXXXXX' — tel:/wa.me/vCard-ի համար
     phoneDisplay: string    // 'XXX-XXX-XXX' — երևացող ձևաչափ

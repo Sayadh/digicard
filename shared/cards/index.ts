@@ -24,3 +24,4 @@ export function listCardSlugs(): string[] {
 }
 
 export * from './types'
+export * from './theme'

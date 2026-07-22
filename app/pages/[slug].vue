@@ -12,7 +12,7 @@
     <LuxuryBottomNav />
   </div>
 
-  <div v-else class="min-h-screen bg-bone font-sans text-ink selection:bg-mint-light selection:text-ink">
+  <div v-else class="min-h-screen bg-bone font-sans text-ink selection:bg-mint-light selection:text-ink" :style="themeVars">
     <div class="w-full max-w-[65rem] mx-auto bg-bone min-h-screen relative shadow-lift-lg border-x border-hairline">
       <HeroSection />
       <GiftCardSection />
@@ -36,7 +36,8 @@
 // section components, i18n content, contact links, the QR code, the vCard
 // download — resolves from that single CardDefinition. Onboarding a new
 // client is purely a shared/cards/<slug>.ts addition; this page never changes.
-import { getCard } from '#shared/cards'
+import { computed } from 'vue'
+import { getCard, buildThemeVars } from '#shared/cards'
 
 const route = useRoute()
 const slug = Array.isArray(route.params.slug) ? route.params.slug[0] : route.params.slug
@@ -47,6 +48,12 @@ if (!card) {
 }
 
 setCurrentCard(card)
+
+// Cards with a `theme` (dark + accent hex) get their entire palette derived and
+// injected here as CSS custom properties on the page root — every cleaning-service
+// component already renders through var(--card-*, <original-fallback>) tokens
+// (see tailwind.config.ts), so this is the only place theming ever gets wired in.
+const themeVars = computed(() => (card.theme ? buildThemeVars(card.theme) : {}))
 
 const { initFromStorage } = useLocale()
 onMounted(() => {

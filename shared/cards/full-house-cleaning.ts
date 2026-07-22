@@ -7,16 +7,23 @@ export const fullHouseCleaningCard: CardDefinition = {
   meta: {
     title: 'Full House Cleaning — Թվային քարտ',
     description: 'Բարձրագույն ստանդարտների մաքրություն՝ վստահված ոլորտի առաջատար մասնագետներին — Full House Cleaning-ի թվային քարտը։',
-    themeColor: '#183332',
+    themeColor: '#4A5254',
     ogTitle: 'Full House Cleaning — Թվային քարտ',
     ogDescription: 'Բարձրագույն ստանդարտների մաքրություն՝ վստահված ոլորտի առաջատար մասնագետներին։'
+  },
+
+  // Whole page's palette (background, text, hairlines, shadows, accent) is derived
+  // from just these two brand colors — see shared/cards/theme.ts.
+  theme: {
+    dark: '#4A5254',
+    accent: '#66DBE3'
   },
 
   brand: {
     orgName: 'Full House Cleaning',
     logoPath: '/cards/full-house-cleaning/logo.jpg',
-    accentColor: '#036672',
-    accentColorSecondary: '#5AB6C3'
+    accentColor: '#4A5254',
+    accentColorSecondary: '#66DBE3'
   },
 
   contact: {
