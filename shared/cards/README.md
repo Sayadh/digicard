@@ -71,6 +71,10 @@
     instagramUrl?: string   // թող դատարկ, եթե Instagram չկա
     address?: string        // թող դատարկ, եթե հասցե ցուցադրել պետք չէ
     openingHoursSchema?: string // schema.org ձևաչափ, օր. 'Mo-Su 09:00-18:00'
+    notifyTelegramChatIds?: string[] // Telegram chat/user ID-ներ, որոնց contact/gift
+                            // ֆորմայի ամեն submission ուղարկվում է (տես ստորև՝
+                            // Telegram bot notifications բաժինը)։ Չնշելու դեպքում
+                            // ֆորմայի submit-ը ուղղակի mailto:-ի վրա է ընկնում։
   }
 
   gallery: {
@@ -94,7 +98,21 @@
 - **`dialog.messageDefaultBook` ֆունկցիա է** (ոչ string) — normal է, բայց երբեք մի փորձիր այն դնել useState-ի մեջ ուղիղ (ֆունկցիաները serialize չեն լինում SSR payload-ում)։ Ահա թե ինչու `useCurrentCard()`-ը միայն slug-ն է պահում state-ում և ամբողջ card-ը վերականգնում է registry-ից։
 - **QR customization panel-ը (`QrCodeSection`) միայն dev/local-ում է երևում** (`import.meta.dev` gate `pages/[slug].vue`-ում)։ Production-ում ամբողջովին բացակայում է build-ից։ Դա design-ով է, ոչ bug։
 - **QR-ը deterministic է** — նույն slug + նույն accentColor/accentColorSecondary = միշտ absolutely նույն QR պատկեր։ Slug-ը երբեք չփոխել, եթե արդեն տպված QR կա։
+- **`<Teleport to="body">`-ով render եղած UI-ն (ContactDialog, gallery lightbox-երը) չի ժառանգում page-root div-ի inline `:style` CSS var-երը** — Teleport-ը DOM-ը իրապես տեղափոխում է `<body>`-ի տակ, page-root div-ի դուրս, այնպես որ `var(--card-ink, ...)`-ի նման token-երը այնտեղ fallback-ի վրա են ընկնում, եթե card-ի theme-ը սահմանված է միայն page-root-ի վրա։ Լուծումը՝ `pages/[slug].vue`-ում theme var-երը *նաև* գրվում են `<body>`-ի վրա (`useHead({ bodyAttrs: { style: ... } })`), քանի որ teleported բովանդակությունը դեռ `<body>`-ի ժառանգորդ է լինում, նույնիսկ դուրս գալով page-root div-ից։ Ցանկացած նոր teleported overlay ավելացնելիս սա հիշել։
 - **`gallery.videos[].poster` պարտադիր պետք է լինի իրական պատկեր (jpg/png), ոչ թե video ֆայլ** — բրաուզերը չի կարող `<img>`-ում .mov/.mp4 ցույց տալ (broken-image icon)։ Իսկ `.mp4`-ը պետք է իրապես H.264+AAC mp4 container լինի, ոչ թե հեռախոսից եկած `.MOV` ուղղակի rename-ված `.mp4`-ի (հատկապես HEVC codec-ով նկարահանված .MOV-երը չեն աշխատում Chrome/Firefox-ում)։ Poster generate անելու և codec ստուգելու համար՝ `ffprobe -show_entries stream=codec_name <file>`, իսկ վերափոխման համար՝ `ffmpeg -i in.MOV -c:v libx264 -crf 23 -c:a aac -movflags +faststart out.mp4` և poster-ի համար `ffmpeg -i out.mp4 -ss 00:00:00.5 -vframes 1 out-poster.jpg`։
+
+## Telegram bot notifications (contact/gift ֆորմա)
+
+`ContactDialog.vue`-ի submit-ը (booking և gift-card երկուսն էլ) ուղարկվում է `POST /api/contact`-ին (`server/routes/api/contact.post.ts`), որը Telegram Bot API-ի `sendMessage`-ով ուղարկում է հաղորդագրություն։ Bot-ը մեկն է ամբողջ platform-ի համար (մեկ token), բայց ստացողները (`contact.notifyTelegramChatIds`) card-ից card են՝ ամեն client տեսնում է միայն իր հայտերը։
+
+Կարգավորելու քայլերը մեկ card-ի համար.
+
+1. **Bot token** (եթե դեռ չկա) — Telegram-ում գրիր `@BotFather`-ին, `/newbot`, հետևիր հրահանգներին, կստանաս token (տեսք՝ `123456789:AAF...`)։ Դի՛ր `NUXT_TELEGRAM_BOT_TOKEN` env var-ի մեջ (Vercel-ում՝ Project → Settings → Environment Variables), **ոչ մի տեղ shared/cards/*.ts ֆայլում** — token-ը server-only secret է։
+2. **Chat ID-ներ** — ամեն ստացողը պիտի մի անգամ գրի bot-ին (ցանկացած հաղորդագրություն), հետո բացիր `https://api.telegram.org/bot<TOKEN>/getUpdates` browser-ում և գտիր `"chat":{"id": ...}` արժեքը։
+3. Ավելացրու այդ ID(ներ)ը `shared/cards/<slug>.ts`-ի `contact.notifyTelegramChatIds`-ում՝ `['123456789', '987654321']`։
+4. Deploy — token-ը push-ից անկախ, միայն Vercel env var-ից է կարդացվում, այնպես որ token-ը փոխելը deploy-ի կարիք չունի (միայն redeploy)։
+
+Եթե token-ը դատարկ է կամ `notifyTelegramChatIds`-ը դատարկ array է, endpoint-ը լուռ ոչինչ չի ուղարկում (ոչ error) և client-ը fallback է անում `mailto:`-ի վրա, այնպես որ ոչ մի lead չի կորչում մինչև bot-ը կարգավորելը։
 
 ## Reference օրինակ
 

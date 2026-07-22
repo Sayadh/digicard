@@ -50,10 +50,27 @@ if (!card) {
 setCurrentCard(card)
 
 // Cards with a `theme` (dark + accent hex) get their entire palette derived and
-// injected here as CSS custom properties on the page root — every cleaning-service
-// component already renders through var(--card-*, <original-fallback>) tokens
-// (see tailwind.config.ts), so this is the only place theming ever gets wired in.
+// injected here as CSS custom properties — every cleaning-service component
+// already renders through var(--card-*, <original-fallback>) tokens (see
+// tailwind.config.ts), so this is the only place theming ever gets wired in.
 const themeVars = computed(() => (card.theme ? buildThemeVars(card.theme) : {}))
+
+// Also written onto <body>, not just the page-root div: ContactDialog and the
+// gallery lightboxes render through <Teleport to="body">, which physically
+// moves that DOM out from under the page-root div — so it stops inheriting
+// any CSS custom properties defined only there. Body-level custom properties
+// are inherited by teleported content too (it still lands inside <body>),
+// so this is what actually makes those overlays pick up the card's theme
+// instead of silently falling back to the original hardcoded palette.
+useHead({
+  bodyAttrs: {
+    style: computed(() =>
+      Object.entries(themeVars.value)
+        .map(([key, value]) => `${key}:${value}`)
+        .join(';')
+    )
+  }
+})
 
 const { initFromStorage } = useLocale()
 onMounted(() => {

@@ -32,7 +32,12 @@ export const fullHouseCleaningCard: CardDefinition = {
     email: 'fullhousecleaning@gmail.com',
     whatsapp: true,
     instagramUrl: 'https://www.instagram.com/full_house___cleaning?igsh=MWxtazhxeGp3ZXBodA%3D%3D&utm_source=qr',
-    openingHoursSchema: 'Mo-Su 09:00-18:00'
+    openingHoursSchema: 'Mo-Su 09:00-18:00',
+    // Add the Telegram chat/user ID(s) that should get a message whenever this
+    // card's contact/gift form is submitted, e.g. notifyTelegramChatIds: ['123456789'].
+    // Get an ID by messaging the bot from that Telegram account, then opening
+    // https://api.telegram.org/bot<TOKEN>/getUpdates and reading "chat":{"id": ...}.
+    notifyTelegramChatIds: []
   },
 
   gallery: {
@@ -130,6 +135,7 @@ export const fullHouseCleaningCard: CardDefinition = {
         messageDefaultGift: 'Ցանկանում եմ նվեր-քարտ ձեռք բերել։',
         messageDefaultBook: (service: string) => `Ցանկանում եմ պատվիրել «${service}»։`,
         submit: 'Ուղարկել հայտը',
+        sending: 'Ուղարկվում է...',
         successTitle: 'Շնորհակալություն',
         successBody: 'Ձեր հայտն ընդունված է, մենք շուտով կապ կհաստատենք հեռախոսով կամ WhatsApp-ով։',
         close: 'Փակել',
@@ -216,6 +222,7 @@ export const fullHouseCleaningCard: CardDefinition = {
         messageDefaultGift: "I'd like to send a gift card.",
         messageDefaultBook: (service: string) => `I'd like to book ${service}.`,
         submit: 'Send Request',
+        sending: 'Sending...',
         successTitle: 'Thank you',
         successBody: "We've received your request and will confirm shortly by phone or WhatsApp.",
         close: 'Close',
@@ -302,6 +309,7 @@ export const fullHouseCleaningCard: CardDefinition = {
         messageDefaultGift: 'Хочу приобрести подарочную карту.',
         messageDefaultBook: (service: string) => `Хочу заказать «${service}».`,
         submit: 'Отправить заявку',
+        sending: 'Отправка...',
         successTitle: 'Спасибо',
         successBody: 'Мы получили вашу заявку и скоро свяжемся с вами по телефону или WhatsApp.',
         close: 'Закрыть',

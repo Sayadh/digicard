@@ -31,7 +31,7 @@
             <p class="text-sm text-stone leading-relaxed mb-6">{{ t.dialog.successBody }}</p>
             <button
               type="button"
-              class="bg-ink text-bone font-medium py-3 px-8 rounded-full text-xs uppercase tracking-widest hover:bg-ink-soft transition-all duration-300 active:scale-[0.97]"
+              class="bg-gradient-to-br from-hero-from to-hero-to text-bone font-medium py-3 px-8 rounded-full text-xs uppercase tracking-widest hover:brightness-110 transition-all duration-300 active:scale-[0.97]"
               @click="close"
             >
               {{ t.dialog.close }}
@@ -90,9 +90,10 @@
               </button>
               <button
                 type="submit"
-                class="flex-1 bg-ink text-bone py-3.5 rounded-full font-medium text-xs uppercase tracking-widest hover:bg-ink-soft transition-all duration-300 active:scale-[0.97]"
+                :disabled="submitting"
+                class="flex-1 bg-gradient-to-br from-hero-from to-hero-to text-bone py-3.5 rounded-full font-medium text-xs uppercase tracking-widest hover:brightness-110 transition-all duration-300 active:scale-[0.97] disabled:opacity-60 disabled:pointer-events-none"
               >
-                {{ t.dialog.submit }}
+                {{ submitting ? t.dialog.sending : t.dialog.submit }}
               </button>
             </div>
           </form>
@@ -115,6 +116,7 @@ const phone = ref('')
 const message = ref('')
 const error = ref(false)
 const submitted = ref(false)
+const submitting = ref(false)
 const nameInput = ref<HTMLInputElement | null>(null)
 
 const title = computed(() => {
@@ -154,22 +156,42 @@ onUnmounted(() => {
   if (import.meta.client) window.removeEventListener('keydown', onKeydown)
 })
 
-function submit() {
+async function submit() {
   if (!name.value.trim() || !phone.value.trim()) {
     error.value = true
     return
   }
   error.value = false
+  submitting.value = true
 
-  const subject = encodeURIComponent(title.value)
-  const body = encodeURIComponent(
-    `${t.value.dialog.nameLabel}: ${name.value}\n${t.value.dialog.phoneLabel}: ${phone.value}\n\n${message.value}`
-  )
-  const mailto = `mailto:${card.value!.contact.email}?subject=${subject}&body=${body}`
-
-  if (import.meta.client) {
-    window.location.href = mailto
+  // Primary path: notify the card owner's Telegram (see server/routes/api/contact.post.ts —
+  // per-card recipient chat IDs come from card.contact.notifyTelegramChatIds). This never
+  // throws on delivery failure; the server route swallows per-recipient errors so one bad
+  // chat ID can't block the others or fail the request.
+  try {
+    await $fetch('/api/contact', {
+      method: 'POST',
+      body: {
+        slug: card.value!.slug,
+        type: context.value.type,
+        name: name.value.trim(),
+        phone: phone.value.trim(),
+        message: message.value
+      }
+    })
+  } catch {
+    // Fall back to mailto so the lead is never silently lost, even if the
+    // Telegram bot isn't configured yet or the request fails outright.
+    if (import.meta.client) {
+      const subject = encodeURIComponent(title.value)
+      const body = encodeURIComponent(
+        `${t.value.dialog.nameLabel}: ${name.value}\n${t.value.dialog.phoneLabel}: ${phone.value}\n\n${message.value}`
+      )
+      window.location.href = `mailto:${card.value!.contact.email}?subject=${subject}&body=${body}`
+    }
   }
+
+  submitting.value = false
   submitted.value = true
 }
 </script>
