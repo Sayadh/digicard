@@ -90,20 +90,15 @@ export interface LocaleContent {
     giftTitle: string
     giftEyebrow: string
     bookTitlePrefix: string
-    nameLabel: string
-    namePlaceholder: string
-    phoneLabel: string
-    phonePlaceholder: string
-    messageLabel: string
-    messageDefaultGift: string
-    messageDefaultBook: (service: string) => string
-    submit: string
-    sending: string
-    successTitle: string
-    successBody: string
+    /** Shown for the gift-card CTA — a plain hand-off prompt, no form. */
+    promptGift: string
+    /** Shown for a service's "book" CTA — takes the service name. */
+    promptService: (service: string) => string
+    /** WhatsApp button label — hidden entirely when contact.whatsapp is false. */
+    whatsapp: string
+    /** Call button label. */
+    call: string
     close: string
-    cancel: string
-    required: string
   }
 }
 
@@ -182,16 +177,6 @@ export interface CardContact {
   address?: string
   /** schema.org openingHours format, e.g. 'Mo-Su 09:00-18:00'. Omit to leave it out of JSON-LD. */
   openingHoursSchema?: string
-  /**
-   * Telegram numeric chat/user IDs that should receive a message whenever this
-   * card's contact/gift form is submitted (see server/routes/api/contact.post.ts).
-   * The bot itself is shared across all cards (one token, set via the
-   * NUXT_TELEGRAM_BOT_TOKEN env var — never committed here); this list is what
-   * makes notifications land only with this card's own owner/staff. Omit (or
-   * leave empty) to skip Telegram delivery entirely — the form still falls
-   * back to a mailto: link on the client if this isn't set up yet.
-   */
-  notifyTelegramChatIds?: string[]
 }
 
 /**

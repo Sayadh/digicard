@@ -32,12 +32,7 @@ export const fullHouseCleaningCard: CardDefinition = {
     email: 'fullhousecleaning@gmail.com',
     whatsapp: true,
     instagramUrl: 'https://www.instagram.com/full_house___cleaning?igsh=MWxtazhxeGp3ZXBodA%3D%3D&utm_source=qr',
-    openingHoursSchema: 'Mo-Su 09:00-18:00',
-    // Add the Telegram chat/user ID(s) that should get a message whenever this
-    // card's contact/gift form is submitted, e.g. notifyTelegramChatIds: ['123456789'].
-    // Get an ID by messaging the bot from that Telegram account, then opening
-    // https://api.telegram.org/bot<TOKEN>/getUpdates and reading "chat":{"id": ...}.
-    notifyTelegramChatIds: []
+    openingHoursSchema: 'Mo-Su 09:00-18:00'
   },
 
   gallery: {
@@ -124,23 +119,14 @@ export const fullHouseCleaningCard: CardDefinition = {
         gift: 'Նվեր-քարտ'
       },
       dialog: {
-        giftTitle: 'Հայտ նվեր-քարտի համար',
-        giftEyebrow: 'Կհաստատենք շուտով',
+        giftTitle: 'Նվեր-քարտ',
+        giftEyebrow: 'Կապվեք մեզ հետ',
         bookTitlePrefix: 'Պատվիրել՝',
-        nameLabel: 'Անուն',
-        namePlaceholder: 'Ձեր անունը',
-        phoneLabel: 'Հեռախոս',
-        phonePlaceholder: 'Ձեր հեռախոսահամարը',
-        messageLabel: 'Հաղորդագրություն',
-        messageDefaultGift: 'Ցանկանում եմ նվեր-քարտ ձեռք բերել։',
-        messageDefaultBook: (service: string) => `Ցանկանում եմ պատվիրել «${service}»։`,
-        submit: 'Ուղարկել հայտը',
-        sending: 'Ուղարկվում է...',
-        successTitle: 'Շնորհակալություն',
-        successBody: 'Ձեր հայտն ընդունված է, մենք շուտով կապ կհաստատենք հեռախոսով կամ WhatsApp-ով։',
-        close: 'Փակել',
-        cancel: 'Չեղարկել',
-        required: 'Խնդրում ենք լրացնել անունը և հեռախոսահամարը։'
+        promptGift: 'Եթե ցանկանում եք նվեր-քարտ պատվիրել, խնդրում ենք գրեք կամ զանգահարեք մեզ։',
+        promptService: (service: string) => `Եթե ցանկանում եք պատվիրել «${service}», խնդրում ենք գրեք կամ զանգահարեք մեզ։`,
+        whatsapp: 'WhatsApp',
+        call: 'Զանգել',
+        close: 'Փակել'
       }
     },
     en: {
@@ -211,23 +197,14 @@ export const fullHouseCleaningCard: CardDefinition = {
         gift: 'Gift Card'
       },
       dialog: {
-        giftTitle: 'Gift Card Request',
-        giftEyebrow: "We'll confirm shortly",
+        giftTitle: 'Gift Card',
+        giftEyebrow: 'Get in touch',
         bookTitlePrefix: 'Book:',
-        nameLabel: 'Name',
-        namePlaceholder: 'Your name',
-        phoneLabel: 'Phone',
-        phonePlaceholder: 'Your phone number',
-        messageLabel: 'Message',
-        messageDefaultGift: "I'd like to send a gift card.",
-        messageDefaultBook: (service: string) => `I'd like to book ${service}.`,
-        submit: 'Send Request',
-        sending: 'Sending...',
-        successTitle: 'Thank you',
-        successBody: "We've received your request and will confirm shortly by phone or WhatsApp.",
-        close: 'Close',
-        cancel: 'Cancel',
-        required: 'Please fill in your name and phone number.'
+        promptGift: "If you'd like to order a gift card, please message us or give us a call.",
+        promptService: (service: string) => `If you'd like to book "${service}", please message us or give us a call.`,
+        whatsapp: 'WhatsApp',
+        call: 'Call',
+        close: 'Close'
       }
     },
     ru: {
@@ -298,23 +275,14 @@ export const fullHouseCleaningCard: CardDefinition = {
         gift: 'Подарочная карта'
       },
       dialog: {
-        giftTitle: 'Заявка на подарочную карту',
-        giftEyebrow: 'Скоро подтвердим',
+        giftTitle: 'Подарочная карта',
+        giftEyebrow: 'Свяжитесь с нами',
         bookTitlePrefix: 'Бронирование:',
-        nameLabel: 'Имя',
-        namePlaceholder: 'Ваше имя',
-        phoneLabel: 'Телефон',
-        phonePlaceholder: 'Ваш номер телефона',
-        messageLabel: 'Сообщение',
-        messageDefaultGift: 'Хочу приобрести подарочную карту.',
-        messageDefaultBook: (service: string) => `Хочу заказать «${service}».`,
-        submit: 'Отправить заявку',
-        sending: 'Отправка...',
-        successTitle: 'Спасибо',
-        successBody: 'Мы получили вашу заявку и скоро свяжемся с вами по телефону или WhatsApp.',
-        close: 'Закрыть',
-        cancel: 'Отмена',
-        required: 'Пожалуйста, укажите имя и номер телефона.'
+        promptGift: 'Если хотите заказать подарочную карту, пожалуйста, напишите нам или позвоните.',
+        promptService: (service: string) => `Если хотите заказать «${service}», пожалуйста, напишите нам или позвоните.`,
+        whatsapp: 'WhatsApp',
+        call: 'Позвонить',
+        close: 'Закрыть'
       }
     }
   }

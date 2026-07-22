@@ -13,11 +13,6 @@ export default defineNuxtConfig({
   // the NUXT_PUBLIC_SITE_URL env var (e.g. on Vercel preview deployments)
   // without needing a code change.
   runtimeConfig: {
-    // Server-only — never exposed to the client bundle (that's what makes this
-    // safe to keep out of the `public` block). Set via the NUXT_TELEGRAM_BOT_TOKEN
-    // env var (in Vercel: Project Settings → Environment Variables), never hardcoded
-    // into any shared/cards/*.ts file, since those are plain-text and tracked in git.
-    telegramBotToken: '',
     public: {
       siteUrl: 'https://digicard.am'
     }
