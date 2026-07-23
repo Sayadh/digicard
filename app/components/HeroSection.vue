@@ -30,7 +30,7 @@
         </h1>
       </div>
 
-      <p class="text-[clamp(0.875rem,0.6vw_+_0.75rem,1rem)] text-bone/55 font-light leading-relaxed max-w-[clamp(19rem,45vw,28rem)] mb-14" v-reveal="160">
+      <p class="text-[clamp(0.875rem,0.6vw_+_0.75rem,1rem)] text-bone font-light leading-relaxed max-w-[clamp(19rem,45vw,28rem)] mb-14" v-reveal="160">
         {{ t.hero.tagline }}
       </p>
 
