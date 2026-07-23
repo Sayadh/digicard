@@ -19,25 +19,34 @@ export default <Partial<Config>>{
         // A card WITH a `theme` (see shared/cards/theme.ts) gets its own derived
         // values injected as inline CSS vars on the page root, repainting the
         // entire template through inheritance alone — no component changes.
-        ink: 'var(--card-ink, #183332)',
-        'ink-soft': 'var(--card-ink-soft, #233938)',
-        bone: 'var(--card-bone, #F7F8F5)',
-        paper: 'var(--card-paper, #FCFDFC)',
+        //
+        // Format is rgb(var(--card-x-rgb, R G B) / <alpha-value>), NOT a plain
+        // var(--card-x, #hex) — Tailwind can only generate opacity-modifier
+        // utilities (bg-ink/60, text-bone/80, etc.) when the color resolves to
+        // three bare RGB numbers it can substitute <alpha-value> against. A
+        // hex string or an rgba()-valued var silently produces no CSS at all
+        // for the modified class (see shared/cards/README.md gotchas).
+        ink: 'rgb(var(--card-ink-rgb, 24 51 50) / <alpha-value>)',
+        'ink-soft': 'rgb(var(--card-ink-soft-rgb, 35 57 56) / <alpha-value>)',
+        bone: 'rgb(var(--card-bone-rgb, 247 248 245) / <alpha-value>)',
+        paper: 'rgb(var(--card-paper-rgb, 252 253 252) / <alpha-value>)',
+        // mint is already translucent by design (fixed alpha baked in) and never
+        // used with a `/NN` modifier, so it stays a plain var — no RGB triplet needed.
         mint: 'var(--card-mint, #5AB6C3B0)',
-        'mint-light': 'var(--card-mint-light, #5DD9E8)',
-        'mint-dim': 'var(--card-mint-dim, #036672)',
-        moss: 'var(--card-moss, #4B6357)',
-        'moss-deep': 'var(--card-moss-deep, #324840)',
-        stone: 'var(--card-stone, #6E7570)',
-        'stone-light': 'var(--card-stone-light, #9CA39D)',
+        'mint-light': 'rgb(var(--card-mint-light-rgb, 93 217 232) / <alpha-value>)',
+        'mint-dim': 'rgb(var(--card-mint-dim-rgb, 3 102 114) / <alpha-value>)',
+        moss: 'rgb(var(--card-moss-rgb, 75 99 87) / <alpha-value>)',
+        'moss-deep': 'rgb(var(--card-moss-deep-rgb, 50 72 64) / <alpha-value>)',
+        stone: 'rgb(var(--card-stone-rgb, 110 117 112) / <alpha-value>)',
+        'stone-light': 'rgb(var(--card-stone-light-rgb, 156 163 157) / <alpha-value>)',
         hairline: 'var(--card-hairline, rgba(35, 57, 56, 0.12))',
         'hairline-dark': 'var(--card-hairline-dark, rgba(247, 248, 245, 0.12))',
         // Full-bleed Hero/Footer backdrop only — richer than plain `ink` when a
-        // card has a `theme`. Both fall back to the same flat `ink` hex, so a
+        // card has a `theme`. Both fall back to the same flat `ink` RGB, so a
         // `bg-gradient-to-br from-hero-from to-hero-to` renders as an identical
         // solid color for any card that hasn't set a theme.
-        'hero-from': 'var(--card-hero-from, #183332)',
-        'hero-to': 'var(--card-hero-to, #183332)',
+        'hero-from': 'rgb(var(--card-hero-from-rgb, 24 51 50) / <alpha-value>)',
+        'hero-to': 'rgb(var(--card-hero-to-rgb, 24 51 50) / <alpha-value>)',
 
         // --- DigiCard (SaaS marketing homepage) — its own identity, separate from the
         // Full House Cleaning card brand above. Indigo/violet, Stripe/Linear-inspired. ---

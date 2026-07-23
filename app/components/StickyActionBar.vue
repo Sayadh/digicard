@@ -4,7 +4,7 @@
     style="bottom: calc(1.25rem + env(safe-area-inset-bottom));"
     v-reveal="300"
   >
-    <div class="flex items-center gap-1.5 p-1.5 bg-gradient-to-br from-hero-from/95 to-hero-to/95 backdrop-blur-xl rounded-full border border-hairline-dark shadow-[0_10px_40px_rgba(102,219,227,0.25)]">
+    <div class="flex items-center gap-1.5 p-1.5 bg-gradient-to-br from-hero-from/90 to-hero-to/90 backdrop-blur-xl rounded-full border border-hairline-dark shadow-[0_10px_40px_rgba(102,219,227,0.25)]">
       <a
         :href="`tel:${card!.contact.phoneIntl}`"
         :aria-label="t.dock.call"

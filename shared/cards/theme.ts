@@ -87,6 +87,19 @@ function toRgba(rgb: [number, number, number], alpha: number): string {
   return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${alpha})`
 }
 
+/**
+ * Space-separated "R G B" triplet (Tailwind's required format for a color that
+ * needs to support the `/NN` opacity modifier, e.g. `bg-ink/60`). Tailwind
+ * substitutes its `<alpha-value>` placeholder into `rgb(var(--x) / <alpha-value>)`
+ * — that placeholder mechanism only works against three bare numbers, not a
+ * hex string or a var() that already resolves to one, which is exactly why
+ * tailwind.config.ts's color tokens are wired to *-rgb vars instead of the
+ * plain hex ones below.
+ */
+function toRgbTriplet(rgb: [number, number, number]): string {
+  return `${Math.round(rgb[0])} ${Math.round(rgb[1])} ${Math.round(rgb[2])}`
+}
+
 /** Same hue as `hex`, retargeted to an absolute lightness and a saturation scaled by `satScale`. */
 function atLightness(hex: string, lightness: number, satScale = 1): string {
   const [h, s] = rgbToHsl(...hexToRgb(hex))
@@ -141,19 +154,25 @@ export function buildThemeVars(theme: CardTheme): Record<string, string> {
   const heroTo = ink
 
   return {
-    '--card-ink': ink,
-    '--card-ink-soft': inkSoft,
-    '--card-bone': bone,
-    '--card-paper': paper,
+    // RGB-triplet vars (no "#", no commas) — required by tailwind.config.ts's
+    // rgb(var(--card-x-rgb, R G B) / <alpha-value>) pattern so that opacity
+    // modifiers (bg-ink/60, text-bone/80, etc.) actually generate CSS. A plain
+    // hex or rgba() var cannot support Tailwind's <alpha-value> substitution.
+    '--card-ink-rgb': toRgbTriplet(hexToRgb(ink)),
+    '--card-ink-soft-rgb': toRgbTriplet(hexToRgb(inkSoft)),
+    '--card-bone-rgb': toRgbTriplet(hexToRgb(bone)),
+    '--card-paper-rgb': toRgbTriplet(hexToRgb(paper)),
+    '--card-mint-light-rgb': toRgbTriplet(accentRgb),
+    '--card-mint-dim-rgb': toRgbTriplet(hexToRgb(mintDim)),
+    '--card-hero-from-rgb': toRgbTriplet(hexToRgb(heroFrom)),
+    '--card-hero-to-rgb': toRgbTriplet(hexToRgb(heroTo)),
+    '--card-moss-rgb': toRgbTriplet(hexToRgb(moss)),
+    '--card-moss-deep-rgb': toRgbTriplet(hexToRgb(mossDeep)),
+    '--card-stone-rgb': toRgbTriplet(hexToRgb(stone)),
+    '--card-stone-light-rgb': toRgbTriplet(hexToRgb(stoneLight)),
+    // Already-translucent-by-design (fixed alpha baked in) — never used with a
+    // `/NN` modifier anywhere, so these stay plain CSS values, not RGB triplets.
     '--card-mint': mint,
-    '--card-mint-light': mintLight,
-    '--card-mint-dim': mintDim,
-    '--card-hero-from': heroFrom,
-    '--card-hero-to': heroTo,
-    '--card-moss': moss,
-    '--card-moss-deep': mossDeep,
-    '--card-stone': stone,
-    '--card-stone-light': stoneLight,
     '--card-hairline': toRgba(darkRgb, 0.12),
     '--card-hairline-dark': toRgba(hexToRgb(bone), 0.12),
     '--card-shadow-lift-sm': `0 2px 10px ${toRgba(darkRgb, 0.05)}`,
