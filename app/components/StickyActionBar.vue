@@ -25,7 +25,7 @@
       <a
         href="#gift-card"
         :aria-label="t.dock.gift"
-        class="flex items-center justify-center gap-2 bg-mint text-ink rounded-full font-medium text-2xs uppercase tracking-widest shadow-mint hover:bg-mint-light transition-all duration-300 active:scale-[0.97] w-11 h-11 min-[600px]:w-auto min-[600px]:h-auto min-[600px]:flex-1 min-[600px]:py-3 min-[600px]:px-4 animate-pulseglow min-[600px]:animate-none"
+        class="flex items-center justify-center gap-2 bg-gradient-to-br from-hero-from to-hero-to text-bone rounded-full font-medium text-2xs uppercase tracking-widest shadow-[0_4px_20px_rgba(102,219,227,0.45)] hover:brightness-110 transition-all duration-300 active:scale-[0.97] w-11 h-11 min-[600px]:w-auto min-[600px]:h-auto min-[600px]:flex-1 min-[600px]:py-3 min-[600px]:px-4 animate-pulseglow min-[600px]:animate-none"
       >
         <GiftIcon class="w-4 h-4 min-[600px]:w-3.5 min-[600px]:h-3.5 shrink-0" />
         <span class="hidden min-[600px]:inline">{{ t.dock.gift }}</span>
