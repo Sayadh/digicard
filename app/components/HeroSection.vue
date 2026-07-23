@@ -38,7 +38,7 @@
       <div class="flex flex-col sm:flex-row gap-4 w-full max-w-[18rem] sm:max-w-md" v-reveal="240">
         <a
           href="#contact"
-          class="flex-1 inline-flex items-center justify-center gap-2.5 bg-mint-light text-ink py-4 rounded-full font-semibold text-xs uppercase tracking-widest shadow-[0_6px_28px_rgba(102,219,227,0.5)] hover:brightness-105 transition-all duration-300 active:scale-[0.97]"
+          class="flex-1 inline-flex items-center justify-center gap-2.5 bg-mint-light text-ink py-4 rounded-full font-semibold text-xs uppercase tracking-widest shadow-[0_6px_28px_rgba(102,219,227,0.5)] hover:brightness-105 transition-all duration-300 active:scale-[0.97] animate-bobble hover:[animation-play-state:paused]"
         >
           <ContactIcon class="w-3.5 h-3.5" />
           {{ t.hero.seeContacts }}

@@ -63,7 +63,8 @@
   }
   .animate-drift,
   .animate-sheen,
-  .animate-pulseglow {
+  .animate-pulseglow,
+  .animate-bobble {
     animation: none !important;
   }
 }

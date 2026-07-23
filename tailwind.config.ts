@@ -138,6 +138,10 @@ export default <Partial<Config>>{
         luxfloat: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' }
+        },
+        bobble: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-7px)' }
         }
       },
       animation: {
@@ -149,7 +153,8 @@ export default <Partial<Config>>{
         digifloat: 'digifloat 6s ease-in-out infinite',
         digiorb: 'digiorb 12s ease-in-out infinite',
         sparkle: 'sparkle 3.4s ease-in-out infinite',
-        luxfloat: 'luxfloat 7s ease-in-out infinite'
+        luxfloat: 'luxfloat 7s ease-in-out infinite',
+        bobble: 'bobble 1.8s ease-in-out infinite'
       }
     }
   },
