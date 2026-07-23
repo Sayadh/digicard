@@ -145,13 +145,16 @@ export function buildThemeVars(theme: CardTheme): Record<string, string> {
   const mint = toRgba(accentRgb, 0.69)
   const mintDim = atLightness(accent, 23, 1.1)
 
-  // Full-bleed hero/footer background — richer and more saturated than plain
-  // `ink` (which stays reserved for buttons/text/card faces). Same accent hue,
-  // pushed to a vivid mid-dark teal, fading into `ink` so white hero text still
-  // reads cleanly at every point in the gradient.
+  // Full-bleed hero/footer/contacts background — richer and more saturated than
+  // plain `ink` (which stays reserved for buttons/text/card faces). Same accent
+  // hue, pushed to a vivid mid-dark teal, fading into a lightened variant of the
+  // dark color (not `ink` itself, so buttons/card faces don't get pulled along)
+  // so white text still reads cleanly at every point in the gradient. Both
+  // stops are a touch lighter/brighter than a strict "brand color as-is" render
+  // would give, by request — same hues, just lifted a bit off the floor.
   const [accentHue] = rgbToHsl(...accentRgb)
-  const heroFrom = toHex(hslToRgb(accentHue, 78, 38))
-  const heroTo = ink
+  const heroFrom = toHex(hslToRgb(accentHue, 78, 44))
+  const heroTo = atLightness(dark, darkL + 10, 1)
 
   return {
     // RGB-triplet vars (no "#", no commas) — required by tailwind.config.ts's
