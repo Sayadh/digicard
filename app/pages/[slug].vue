@@ -12,6 +12,16 @@
     <LuxuryBottomNav />
   </div>
 
+  <div v-else-if="card!.template === 'portfolio'" class="min-h-screen bg-port-bg font-sans text-port-title selection:bg-port-gold/30 selection:text-port-bg">
+    <PortfolioHeroSection />
+    <PortfolioContactSection />
+    <PortfolioProjectsSection />
+    <PortfolioCapabilitiesSection />
+    <PortfolioWhySection />
+    <PortfolioFinalCtaSection />
+    <PortfolioFooterSection />
+  </div>
+
   <div v-else class="min-h-screen bg-bone font-sans text-ink selection:bg-mint-light selection:text-ink" :style="themeVars">
     <div class="w-full max-w-[65rem] mx-auto bg-bone min-h-screen relative shadow-lift-lg border-x border-hairline">
       <HeroSection />
@@ -120,7 +130,7 @@ useHead({
       type: 'application/ld+json',
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
-        '@type': card.template === 'luxury-beauty' ? 'HairSalon' : 'HomeAndConstructionBusiness',
+        '@type': card.template === 'luxury-beauty' ? 'HairSalon' : card.template === 'portfolio' ? 'Person' : 'HomeAndConstructionBusiness',
         name: card.brand.orgName,
         description: card.meta.description,
         image: ogImageUrl,

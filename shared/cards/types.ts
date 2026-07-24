@@ -173,6 +173,8 @@ export interface CardContact {
   instagramUrl?: string
   telegramUrl?: string
   tiktokUrl?: string
+  facebookUrl?: string
+  linkedinUrl?: string
   /**
    * Explicit Google Maps link, if you have a precise place pin. When omitted,
    * components that need a maps link derive one from `address` automatically
@@ -192,10 +194,12 @@ export interface CardContact {
  * original boarding-pass-style template (Hero/GiftCard/Services/Contact/About/
  * Gallery, driven by `content`). 'luxury-beauty' is an editorial, black/gold
  * template for premium personal-brand businesses (driven by `luxuryContent`).
- * Adding a third template later means: add the value here, add its section
+ * 'portfolio' is a dark, gold-accented template for an individual professional/
+ * freelancer showcasing their own projects (driven by `portfolioContent`).
+ * Adding another template later means: add the value here, add its section
  * components, add one branch in pages/[slug].vue — existing templates untouched.
  */
-export type CardTemplate = 'cleaning-service' | 'luxury-beauty'
+export type CardTemplate = 'cleaning-service' | 'luxury-beauty' | 'portfolio'
 
 export interface LuxuryServiceItem {
   title: string
@@ -277,6 +281,77 @@ export interface LuxuryLocaleContent {
   }
 }
 
+export interface PortfolioProjectItem {
+  /** Anchor id (e.g. 'menus') used for #project-<id> deep links from the footer. */
+  id: string
+  title: string
+  tagline: string
+  description: string
+  features: string[]
+  ctaLabel: string
+  /**
+   * External URL to visit (e.g. the live product). Omit for a project that
+   * has no public link yet (e.g. a bespoke/commissioned offering) — its CTA
+   * then opens a WhatsApp inquiry instead, pre-filled with the project name.
+   */
+  href?: string
+}
+
+export interface PortfolioWhyItem {
+  title: string
+  description: string
+}
+
+export interface PortfolioLocaleContent {
+  hero: {
+    name: string
+    role: string
+    bio: string
+    /** Single hero CTA — scrolls to the on-page #contact section. */
+    ctaContacts: string
+  }
+  contact: {
+    eyebrow: string
+    title: string
+    call: string
+    whatsapp: string
+    telegram: string
+    email: string
+    instagram: string
+    facebook: string
+    linkedin: string
+    saveContact: string
+  }
+  projects: {
+    eyebrow: string
+    title: string
+    items: PortfolioProjectItem[]
+    /** WhatsApp inquiry text for a project with no `href` yet — takes the project title. */
+    inquiryMessage: (project: string) => string
+  }
+  capabilities: {
+    eyebrow: string
+    title: string
+    items: string[]
+  }
+  why: {
+    eyebrow: string
+    title: string
+    items: PortfolioWhyItem[]
+  }
+  finalCta: {
+    eyebrow: string
+    title: string
+    body: string
+    discuss: string
+    whatsapp: string
+    call: string
+  }
+  footer: {
+    tagline: string
+  }
+}
+
 export interface CardDefinition {
   /** URL slug — becomes the route /[slug] and the vCard route /[slug].vcf. */
   slug: string
@@ -297,4 +372,6 @@ export interface CardDefinition {
   content?: Record<Locale, LocaleContent>
   /** Required for template 'luxury-beauty'. */
   luxuryContent?: Record<Locale, LuxuryLocaleContent>
+  /** Required for template 'portfolio'. */
+  portfolioContent?: Record<Locale, PortfolioLocaleContent>
 }

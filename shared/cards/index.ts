@@ -1,6 +1,7 @@
 import type { CardDefinition } from './types'
 import { fullHouseCleaningCard } from './full-house-cleaning'
 import { hairStylistCard } from './hair-stylist'
+import { sayadHarutyunyanCard } from './sayad-harutyunyan'
 
 /**
  * The card registry. To onboard a new client:
@@ -12,7 +13,8 @@ import { hairStylistCard } from './hair-stylist'
  */
 export const cards: Record<string, CardDefinition> = {
   [fullHouseCleaningCard.slug]: fullHouseCleaningCard,
-  [hairStylistCard.slug]: hairStylistCard
+  [hairStylistCard.slug]: hairStylistCard,
+  [sayadHarutyunyanCard.slug]: sayadHarutyunyanCard
 }
 
 export function getCard(slug: string): CardDefinition | undefined {

@@ -76,7 +76,19 @@ export default <Partial<Config>>{
         'lux-text': '#1A1A1A',
         'lux-muted': '#777777',
         'lux-line': 'rgba(21, 21, 21, 0.09)',
-        'lux-line-dark': 'rgba(239, 229, 214, 0.14)'
+        'lux-line-dark': 'rgba(239, 229, 214, 0.14)',
+
+        // --- Portfolio template (e.g. a freelancer/professional's own card) —
+        // near-black with a single gold accent, deliberately fixed (not derived
+        // like the cleaning-service theme system) since it's this specific
+        // person's own brand, not a per-client-configurable palette. ---
+        'port-bg': '#09090B',
+        'port-card': '#111113',
+        'port-border': '#27272A',
+        'port-title': '#FFFFFF',
+        'port-text': '#A1A1AA',
+        'port-gold': '#D4AF37',
+        'port-gold-light': '#E3C567'
       },
       fontFamily: {
         // Armenian fallbacks matter here: Fraunces/Cormorant/Inter/IBM Plex Mono have no
